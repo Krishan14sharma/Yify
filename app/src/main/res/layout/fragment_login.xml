@@ -1,0 +1,116 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2F4159"
+    android:orientation="vertical"
+    tools:context="com.example.hplaptop.Yify.controller.Activity.LoginActivity">
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
+
+    <mvp.dagger.yify.yify.views.QuickFontTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_margin="16dp"
+        android:text="Skip login"
+        android:textAppearance="?android:textAppearanceMedium" />
+
+    <ScrollView
+        android:id="@+id/login_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center|center_horizontal"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="60dp"
+                android:src="@drawable/yts_logo_gray"
+                android:visibility="gone" />
+
+
+            <com.example.hplaptop.Yify.views.FloatLabelLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.example.hplaptop.Yify.views.QuickEditText
+                    android:id="@+id/et_uname_login"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Username"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:textAppearance="?android:textAppearanceLarge" />
+            </com.example.hplaptop.Yify.views.FloatLabelLayout>
+
+
+            <com.example.hplaptop.Yify.views.FloatLabelLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.example.hplaptop.Yify.views.QuickEditText
+                    android:id="@+id/et_pass_login"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:ems="10"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:textAppearance="?android:textAppearanceLarge" />
+            </com.example.hplaptop.Yify.views.FloatLabelLayout>
+
+            <com.example.hplaptop.Yify.views.QuickFontTextView
+                android:id="@+id/tv_forgot_pass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginBottom="8dp"
+                android:text="forgot password"
+                android:textAppearance="?android:textAppearanceSmall" />
+
+            <Button
+                android:id="@+id/bt_login"
+                android:layout_width="fill_parent"
+                android:layout_height="56dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/accent_material_light"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:text="LOGIN" />
+
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="56dp"
+                android:layout_gravity="center"
+                android:background="@color/accent"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:text="REGISTER"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/bt_register_login"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Create an account" />
+</LinearLayout>
