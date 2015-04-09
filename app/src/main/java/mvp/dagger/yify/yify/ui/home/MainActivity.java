@@ -25,7 +25,7 @@ public class MainActivity extends BaseToolBarActivity {
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.container, new PlaceholderFragment(),"tag")
                     .commit();
         }
     }
@@ -110,6 +110,7 @@ public class MainActivity extends BaseToolBarActivity {
         public void onDestroyView() {
             super.onDestroyView();
             ButterKnife.reset(this);
+            presenter.destroy();
         }
     }
 }

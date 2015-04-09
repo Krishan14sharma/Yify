@@ -24,6 +24,11 @@ public class MainPresenterImpl implements MainPresenter, FinishListner {
         mainInteractor.fetchData();
     }
 
+    @Override
+    public void destroy() {
+        mainInteractor.destroy();
+    }
+
 
     @Override
     public void onSuccess(MovieListWrapper movieListWrapper) {

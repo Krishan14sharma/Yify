@@ -25,4 +25,9 @@ public class MockMainInteractorImpl implements MainInteractor {
         listner.onSuccess(new Gson().fromJson(str, MovieListWrapper.class));
 
     }
+
+    @Override
+    public void destroy() {
+
+    }
 }

@@ -2,6 +2,7 @@ package mvp.dagger.yify.yify.api;
 
 import java.util.Map;
 
+import mvp.dagger.yify.yify.api.util.CustomErrorHandler;
 import mvp.dagger.yify.yify.model.MovieListWrapper;
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -23,6 +24,7 @@ public class ApiClient {
             RestAdapter restAdapter = new RestAdapter.Builder()
                     .setEndpoint("https://yts.im/api/v2")
                     .setLogLevel(RestAdapter.LogLevel.FULL)
+                    .setErrorHandler(new CustomErrorHandler())
                     .build();
             sMovieListService = restAdapter.create(YifyApiInterface.class);
         }

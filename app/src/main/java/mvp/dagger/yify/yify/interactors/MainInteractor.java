@@ -6,5 +6,6 @@ package mvp.dagger.yify.yify.interactors;
 public interface MainInteractor {
 
     void fetchData();
+    void destroy();
     
 }

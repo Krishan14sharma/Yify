@@ -3,6 +3,7 @@ package mvp.dagger.yify.yify.interactors;
 import java.util.HashMap;
 
 import mvp.dagger.yify.yify.api.ApiClient;
+import mvp.dagger.yify.yify.api.util.CancelableCallback;
 import mvp.dagger.yify.yify.model.MovieListWrapper;
 import mvp.dagger.yify.yify.ui.home.FinishListner;
 import retrofit.Callback;
@@ -19,11 +20,12 @@ public class MainInteractorImpl implements MainInteractor {
     }
 
     FinishListner listner;
+    CancelableCallback<MovieListWrapper> callback;
 
 
     @Override
     public void fetchData() {
-        ApiClient.getYifyApiClient().getMovieList(new HashMap<String, String>(), new Callback<MovieListWrapper>() {
+        ApiClient.getYifyApiClient().getMovieList(new HashMap<String, String>(), callback = new CancelableCallback<>(new Callback<MovieListWrapper>() {
             @Override
             public void success(MovieListWrapper movieListWrapper, Response response) {
                 listner.onSuccess(movieListWrapper);
@@ -33,7 +35,16 @@ public class MainInteractorImpl implements MainInteractor {
             public void failure(RetrofitError error) {
                 listner.onFailure(error);
             }
-        });
+        }));
+    }
+
+    @Override
+    public void destroy() {
+        if (callback != null) {
+            callback.cancel();
+            callback = null;
+        }
+
     }
 
 

@@ -11,6 +11,8 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         def BOOLEAN = "boolean"
@@ -39,6 +41,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'LICENSE.txt'
+    }
 }
 
 dependencies {
@@ -53,4 +58,9 @@ dependencies {
     compile files('libs/droidinspectorserver.jar')
     //    compile 'com.afollestad:material-dialogs:0.6.3.5'
     compile 'com.google.code.gson:gson:2.3'
+
+    // Espresso
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.0'
+    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
+
 }
