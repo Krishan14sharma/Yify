@@ -45,11 +45,11 @@
                 android:visibility="gone" />
 
 
-            <com.example.hplaptop.Yify.views.FloatLabelLayout
+            <mvp.dagger.yify.yify.views.FloatLabelLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.example.hplaptop.Yify.views.QuickEditText
+                <mvp.dagger.yify.yify.views.QuickEditText
                     android:id="@+id/et_uname_login"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -58,14 +58,14 @@
                     android:inputType="textPersonName"
                     android:text=""
                     android:textAppearance="?android:textAppearanceLarge" />
-            </com.example.hplaptop.Yify.views.FloatLabelLayout>
+            </mvp.dagger.yify.yify.views.FloatLabelLayout>
 
 
-            <com.example.hplaptop.Yify.views.FloatLabelLayout
+            <mvp.dagger.yify.yify.views.FloatLabelLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.example.hplaptop.Yify.views.QuickEditText
+                <mvp.dagger.yify.yify.views.QuickEditText
                     android:id="@+id/et_pass_login"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -74,9 +74,9 @@
                     android:hint="Password"
                     android:inputType="textPassword"
                     android:textAppearance="?android:textAppearanceLarge" />
-            </com.example.hplaptop.Yify.views.FloatLabelLayout>
+            </mvp.dagger.yify.yify.views.FloatLabelLayout>
 
-            <com.example.hplaptop.Yify.views.QuickFontTextView
+            < mvp.dagger.yify.yify.views.QuickFontTextView
                 android:id="@+id/tv_forgot_pass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -112,5 +112,6 @@
         android:id="@+id/bt_register_login"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="Create an account" />
 </LinearLayout>

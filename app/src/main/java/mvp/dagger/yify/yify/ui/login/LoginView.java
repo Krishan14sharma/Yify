@@ -13,4 +13,6 @@ public interface LoginView extends BaseView {
     public void navigateToHome();
 
     public void showLoginSuccessMsg();
+
+    //todo public void show showLoginFailureMsg();
 }

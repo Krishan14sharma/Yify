@@ -23,6 +23,9 @@ import static mvp.dagger.yify.yify.ui.common.BaseApp.getContext;
  */
 public class CommonUtil {
 
+    // Dummy private constructor in order to avoid initialization of class
+    private CommonUtil() {
+    }
 
     /**
      * @return Application's version code from the {@code PackageManager}.
