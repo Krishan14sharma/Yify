@@ -108,6 +108,22 @@ public class LoginFragment extends Fragment implements LoginView {
         showToast("Login success");
     }
 
+    @Override
+    public void showLoginFailureMsg(String msg) {
+        showToast(msg);
+    }
+
+    @Override
+    public void disableLoginBtn() {
+        mBtLogin.setClickable(false);
+    }
+
+    @Override
+    public void enableLoginBtn() {
+        mBtLogin.setClickable(true);
+
+    }
+
     @OnClick(R.id.bt_login)
     public void loginClicked() {
         // todo validate fields that too using the method inside presenter

@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,15 +18,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_margin="16dp"
         android:text="Skip login"
-        android:textAppearance="?android:textAppearanceMedium" />
+        android:textAppearance="?android:textAppearanceMedium"
+        android:layout_marginTop="29dp"
+        android:layout_below="@+id/progressBar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <ScrollView
         android:id="@+id/login_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:fillViewport="false">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -95,7 +99,6 @@
                 android:paddingRight="32dp"
                 android:text="LOGIN" />
 
-
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="56dp"
@@ -113,5 +116,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Create an account" />
-</LinearLayout>
+        android:text="Create an account"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/progressBar"
+        android:layout_toEndOf="@+id/progressBar" />
+</RelativeLayout>

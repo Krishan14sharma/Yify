@@ -5,7 +5,6 @@ import java.util.Map;
 
 import mvp.dagger.yify.yify.model.Movie;
 import mvp.dagger.yify.yify.model.MovieListWrapper;
-import mvp.dagger.yify.yify.model.login.LoginResponse;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.http.Field;
@@ -16,23 +15,37 @@ import retrofit.http.Query;
 import retrofit.http.QueryMap;
 
 /**
- * Created by krishan on 29-11-2014.
+ * Created by vardan sharma  on 29-11-2014.
  */
 public class ApiClient {
-    private static YifyApiInterface sMovieListService;
+    private static ApiInterface apiInterface;
+    private static ApiInterface apiInterfaceWithStringConverter;
 
-    public static YifyApiInterface getYifyApiClient() {
-        if (sMovieListService == null) {
+    public static ApiInterface getApiClient() {
+        if (apiInterface == null) {
             RestAdapter restAdapter = new RestAdapter.Builder()
                     .setEndpoint("https://yts.im/api/v2")
                     .setLogLevel(RestAdapter.LogLevel.FULL)
                     .build();
-            sMovieListService = restAdapter.create(YifyApiInterface.class);
+            apiInterface = restAdapter.create(ApiInterface.class);
         }
-        return sMovieListService;
+
+        return apiInterface;
     }
 
-    public interface YifyApiInterface {
+    public static ApiInterface getApiClientWithStringConverter() {
+        if (apiInterfaceWithStringConverter == null) {
+            RestAdapter restAdapter = new RestAdapter.Builder()
+                    .setEndpoint("https://yts.im/api/v2")
+                    .setLogLevel(RestAdapter.LogLevel.FULL)
+                    .setConverter(new StringConverter())
+                    .build();
+            apiInterfaceWithStringConverter = restAdapter.create(ApiInterface.class);
+        }
+        return apiInterfaceWithStringConverter;
+    }
+
+    public interface ApiInterface {
         @GET("/list_movies.json")
         void getMovieList(
                 @QueryMap Map<String, String> options,
@@ -48,9 +61,9 @@ public class ApiClient {
                           @Field("password") String pass, Callback<String> response);
 
         @FormUrlEncoded
-        @POST("/login.json")
-        void LoginUser(@Field("username") String uName, @Field("password") String pass,
-                       Callback<LoginResponse> response);
+        @POST("/user_get_key.json")
+        void LoginUser(@Field("username") String uName, @Field("password") String pass
+                , @Field("application_key") String appKey, Callback<String> response);
 
 
 //        @GET("/movie.json")
