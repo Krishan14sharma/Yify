@@ -13,8 +13,6 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.io.InputStream;
 
-import mvp.dagger.yify.yify.BaseApp;
-
 import static mvp.dagger.yify.yify.BaseApp.getContext;
 
 
@@ -56,6 +54,13 @@ public class CommonUtil {
      * @param message message to be displayed in Toast.
      */
     public static void showToast(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * @param message message to be displayed in Toast.
+     */
+    public static void showToast(int message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 

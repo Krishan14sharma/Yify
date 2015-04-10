@@ -3,9 +3,8 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context="mvp.dagger.yify.yify.ui.sign_up.SignUpActivity"
     tools:ignore="MergeRootFrame">
 
     <include layout="@layout/include_toolbar"></include>
-
 </FrameLayout>

@@ -6,13 +6,7 @@
     android:orientation="vertical"
     tools:context="com.example.hplaptop.Yify.controller.Activity.LoginActivity">
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone" />
+    <include layout="@layout/include_progress_bar" />
 
     <mvp.dagger.yify.yify.views.QuickFontTextView
         android:layout_width="wrap_content"

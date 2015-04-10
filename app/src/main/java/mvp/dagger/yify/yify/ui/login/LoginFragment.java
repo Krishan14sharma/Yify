@@ -3,7 +3,6 @@ package mvp.dagger.yify.yify.ui.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +15,15 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import mvp.dagger.yify.yify.R;
+import mvp.dagger.yify.yify.ui.BaseFragment;
 import mvp.dagger.yify.yify.ui.home.MainActivity;
-import retrofit.RetrofitError;
 
 import static mvp.dagger.yify.yify.util.CommonUtil.showToast;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class LoginFragment extends Fragment implements LoginView {
+public class LoginFragment extends BaseFragment implements LoginView {
 
     @InjectView(R.id.et_uname_login)
     EditText mEtUserName;
@@ -62,30 +61,6 @@ public class LoginFragment extends Fragment implements LoginView {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.reset(this);
-    }
-
-
-    //todo push both the showLoading and hide loading into the base fragment or activity
-    @Override
-    public void showLoading() {
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-
-    @Override
-    public void hideLoading() {
-        progressBar.setVisibility(View.GONE);
-    }
-
-    // todo change this from retrofit error to a string error
-    @Override
-    public void showError(RetrofitError error) {
-
-    }
-
-    @Override
-    public void onHideError() {
-
     }
 
     @Override
