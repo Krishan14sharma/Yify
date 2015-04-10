@@ -9,9 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+
+import javax.inject.Inject;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.OnClick;
+import mvp.dagger.yify.yify.BaseApp;
+import mvp.dagger.yify.yify.BaseAppComponent;
 import mvp.dagger.yify.yify.R;
 import mvp.dagger.yify.yify.model.MovieListWrapper;
 import mvp.dagger.yify.yify.ui.common.BaseToolBarActivity;
@@ -26,7 +30,7 @@ public class MainActivity extends BaseToolBarActivity {
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment(),"tag")
+                    .add(R.id.container, new PlaceholderFragment(), "tag")
                     .commit();
         }
     }
@@ -61,18 +65,32 @@ public class MainActivity extends BaseToolBarActivity {
 
         @InjectView(R.id.progressBar)
         ProgressBar progressBar;
+
         MainPresenter presenter;
 
         public PlaceholderFragment() {
         }
+
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             ButterKnife.inject(this, rootView);
-            presenter = new MainPresenterImpl(this);
+            setUp();
+//            presenter=component.getMainPresenter();
+//            presenter = new MainPresenterImpl(this);
             return rootView;
+        }
+
+        private void setUp() {
+            BaseAppComponent baseAppComponent = (BaseApp.getContext()).getComponent();
+            MainComponent component = DaggerMainComponent.builder()
+                    .baseAppComponent(baseAppComponent)
+                    .mainModule(new MainModule(this))
+                    .build();
+            component.inject(this);
+            presenter=component.getMainPresenter();
         }
 
         @Override

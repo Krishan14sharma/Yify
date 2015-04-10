@@ -1,8 +1,6 @@
 package mvp.dagger.yify.yify.api.util;
 
 
-
-
 import mvp.dagger.yify.yify.R;
 import mvp.dagger.yify.yify.BaseApp;
 import retrofit.ErrorHandler;

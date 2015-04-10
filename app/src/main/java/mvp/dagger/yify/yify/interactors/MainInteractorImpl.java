@@ -15,16 +15,12 @@ import retrofit.client.Response;
  */
 public class MainInteractorImpl implements MainInteractor {
 
-    public MainInteractorImpl(FinishListner listner) {
-        this.listner = listner;
-    }
 
-    FinishListner listner;
     CancelableCallback<MovieListWrapper> callback;
 
 
     @Override
-    public void fetchData() {
+    public void fetchData(final FinishListner listner) {
         ApiClient.getYifyApiClient().getMovieList(new HashMap<String, String>(), callback = new CancelableCallback<>(new Callback<MovieListWrapper>() {
             @Override
             public void success(MovieListWrapper movieListWrapper, Response response) {

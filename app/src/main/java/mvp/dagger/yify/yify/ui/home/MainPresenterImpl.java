@@ -1,5 +1,7 @@
 package mvp.dagger.yify.yify.ui.home;
 
+import javax.inject.Inject;
+
 import mvp.dagger.yify.yify.interactors.MainInteractor;
 import mvp.dagger.yify.yify.interactors.MainInteractorImpl;
 import mvp.dagger.yify.yify.model.MovieListWrapper;
@@ -10,8 +12,9 @@ import retrofit.RetrofitError;
  */
 public class MainPresenterImpl implements MainPresenter, FinishListner {
 
-    public MainPresenterImpl(MainView mainView) {
+    public MainPresenterImpl(MainView mainView,MainInteractor mainInteractor) {
         this.mainView = mainView;
+        this.mainInteractor=mainInteractor;
     }
 
     MainView mainView;
@@ -20,8 +23,7 @@ public class MainPresenterImpl implements MainPresenter, FinishListner {
     @Override
     public void onViewload() {
         mainView.showLoading();
-        mainInteractor = new MainInteractorImpl(this);
-        mainInteractor.fetchData();
+        mainInteractor.fetchData(this);
     }
 
     @Override

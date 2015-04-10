@@ -18,7 +18,13 @@ public class BaseApp extends Application {
 
     private static BaseApp instance;
 
-    public static Context getContext() {
+    public BaseAppComponent getComponent() {
+        return component;
+    }
+
+    private BaseAppComponent component;
+
+    public static BaseApp getContext() {
         return instance;
     }
 
@@ -29,7 +35,8 @@ public class BaseApp extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-
+        component = DaggerBaseAppComponent.builder().baseAppModule(new BaseAppModule(this)).build();
+        component.inject(this);
         if (BuildConfig.LOG_HTTP_REQUESTS) {
             Timber.plant(new Timber.DebugTree());
         } else {

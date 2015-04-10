@@ -13,14 +13,8 @@ import static mvp.dagger.yify.yify.util.CommonUtil.loadJSONFromAsset;
  */
 public class MockMainInteractorImpl implements MainInteractor {
 
-    public MockMainInteractorImpl(FinishListner listner) {
-        this.listner = listner;
-    }
-
-    FinishListner listner;
-
     @Override
-    public void fetchData() {
+    public void fetchData(FinishListner listner) {
         String str = loadJSONFromAsset("movielist.json");
         listner.onSuccess(new Gson().fromJson(str, MovieListWrapper.class));
 
