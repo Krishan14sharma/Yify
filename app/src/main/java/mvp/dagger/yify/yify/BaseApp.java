@@ -1,10 +1,9 @@
-package mvp.dagger.yify.yify.ui.common;
+package mvp.dagger.yify.yify;
 
 import android.app.Application;
 import android.content.Context;
 
 
-import mvp.dagger.yify.yify.BuildConfig;
 import timber.log.Timber;
 
 /**

@@ -70,7 +70,7 @@ public class FloatLabelLayout extends LinearLayout {
 
         setOrientation(VERTICAL);
 
-        final TypedArray a = context.obtainStyledAttributes(attrs, FloatLabelLayout);
+        final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FloatLabelLayout);
 
         int leftPadding = a.getDimensionPixelSize(
                 R.styleable.FloatLabelLayout_floatLabelPaddingLeft,

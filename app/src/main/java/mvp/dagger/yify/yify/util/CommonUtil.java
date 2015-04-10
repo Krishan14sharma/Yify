@@ -13,9 +13,9 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.io.InputStream;
 
-import mvp.dagger.yify.yify.ui.common.BaseApp;
+import mvp.dagger.yify.yify.BaseApp;
 
-import static mvp.dagger.yify.yify.ui.common.BaseApp.getContext;
+import static mvp.dagger.yify.yify.BaseApp.getContext;
 
 
 /**
@@ -32,7 +32,7 @@ public class CommonUtil {
      */
     public static int getAppVersion() {
         try {
-            Context context = BaseApp.getContext();
+            Context context = getContext();
             PackageInfo packageInfo = context.getPackageManager()
                     .getPackageInfo(context.getPackageName(), 0);
             return packageInfo.versionCode;
@@ -47,7 +47,7 @@ public class CommonUtil {
      */
 
     public static SharedPreferences getPreferences() {
-        return BaseApp.getContext().getSharedPreferences(Constants.PREFERENCE_FILE_NAME,
+        return getContext().getSharedPreferences(Constants.PREFERENCE_FILE_NAME,
                 Context.MODE_PRIVATE);
     }
 
@@ -56,7 +56,7 @@ public class CommonUtil {
      * @param message message to be displayed in Toast.
      */
     public static void showToast(String message) {
-        Toast.makeText(BaseApp.getContext(), message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -70,7 +70,7 @@ public class CommonUtil {
     }
 
     public static boolean hasGps() {
-        LocationManager locationManager = (LocationManager) BaseApp.getContext().getSystemService(Context.LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
 

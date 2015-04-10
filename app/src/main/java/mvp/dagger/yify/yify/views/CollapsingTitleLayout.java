@@ -76,7 +76,7 @@ public class CollapsingTitleLayout extends FrameLayout {
         mTextPaint = new TextPaint();
         mTextPaint.setAntiAlias(true);
 
-        TypedArray a = context.obtainStyledAttributes(attrs, CollapsingTitleLayout);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CollapsingTitleLayout);
 
         mExpandedMarginLeft = mExpandedMarginRight = mExpandedMarginBottom =
                 a.getDimensionPixelSize(R.styleable.CollapsingTitleLayout_expandedMargin, 0);
