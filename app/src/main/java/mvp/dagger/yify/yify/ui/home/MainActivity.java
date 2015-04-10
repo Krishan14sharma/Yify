@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import mvp.dagger.yify.yify.R;
 import mvp.dagger.yify.yify.model.MovieListWrapper;
 import mvp.dagger.yify.yify.ui.common.BaseToolBarActivity;
@@ -105,6 +106,7 @@ public class MainActivity extends BaseToolBarActivity {
         public void onHideError() {
 
         }
+
 
         @Override
         public void onDestroyView() {
