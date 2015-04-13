@@ -3,6 +3,7 @@ package mvp.dagger.yify.yify.api;
 import java.util.List;
 import java.util.Map;
 
+import mvp.dagger.yify.yify.api.util.StringConverter;
 import mvp.dagger.yify.yify.model.Movie;
 import mvp.dagger.yify.yify.model.MovieListWrapper;
 import retrofit.Callback;
