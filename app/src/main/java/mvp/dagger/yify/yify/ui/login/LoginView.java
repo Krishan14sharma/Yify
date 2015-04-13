@@ -6,13 +6,17 @@ import mvp.dagger.yify.yify.ui.common.BaseView;
  * Created by HP LAPTOP on 09-04-2015.
  */
 public interface LoginView extends BaseView {
-    public void setUsernameError();
+    void setUsernameError();
 
-    public void setPasswordError();
+    void setPasswordError();
 
-    public void navigateToHome();
+    void navigateToHome();
 
-    public void showLoginSuccessMsg();
+    void showLoginSuccessMsg();
 
-    //todo public void show showLoginFailureMsg();
+    void showLoginFailureMsg(String msg);
+
+    void disableLoginBtn();
+
+    void enableLoginBtn();
 }

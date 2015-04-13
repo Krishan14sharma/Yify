@@ -7,6 +7,4 @@
     tools:ignore="MergeRootFrame">
 
     <include layout="@layout/include_toolbar"></include>
-
-
 </FrameLayout>

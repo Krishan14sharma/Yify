@@ -13,8 +13,6 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.io.InputStream;
 
-import mvp.dagger.yify.yify.BaseApp;
-
 import static mvp.dagger.yify.yify.BaseApp.getContext;
 
 
@@ -60,6 +58,13 @@ public class CommonUtil {
     }
 
     /**
+     * @param message message to be displayed in Toast.
+     */
+    public static void showToast(int message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
      * @param fromActivity the activity from where we want to switch
      * @param toActivity   the class name of the  activity where we are switching to
      */
@@ -78,25 +83,38 @@ public class CommonUtil {
     public static String loadJSONFromAsset(String filepath) {
         String json = null;
         try {
-
             InputStream is = getContext().getAssets().open(filepath);
-
             int size = is.available();
-
             byte[] buffer = new byte[size];
-
             is.read(buffer);
-
             is.close();
-
             json = new String(buffer, "UTF-8");
-
 
         } catch (IOException ex) {
             ex.printStackTrace();
             return null;
         }
         return json;
+    }
+
+    /**
+     * Get's the api key for this application
+     */
+    public static String getAppKey() {
+        String key = null;
+        try {
+            InputStream is = getContext().getAssets().open("app_key");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            key = new String(buffer, "UTF-8");
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return key;
 
     }
 }

@@ -1,8 +1,6 @@
 package mvp.dagger.yify.yify;
 
 import android.app.Application;
-import android.content.Context;
-
 
 import timber.log.Timber;
 

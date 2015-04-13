@@ -8,5 +8,16 @@
     <style name="AppTheme.Base" parent="AppTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="colorPrimary">@color/primary</item>
+
+
+        <!-- colorPrimaryDark is used for the status bar -->
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+
+        <!-- colorAccent is used as the default value for colorControlActivated
+             which is used to tint widgets -->
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:divider">@color/divider</item>
     </style>
 </resources>
