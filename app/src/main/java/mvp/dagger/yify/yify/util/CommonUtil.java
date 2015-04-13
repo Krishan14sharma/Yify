@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -116,6 +117,14 @@ public class CommonUtil {
         }
         return key;
 
+    }
+
+    public final static boolean isValidEmail(CharSequence target) {
+        if (TextUtils.isEmpty(target)) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        }
     }
 }
 

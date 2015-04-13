@@ -21,7 +21,7 @@ public class MainInteractorImpl implements MainInteractor {
 
     @Override
     public void fetchData(final FinishListner listner) {
-        ApiClient.getYifyApiClient().getMovieList(new HashMap<String, String>(), callback = new CancelableCallback<>(new Callback<MovieListWrapper>() {
+        ApiClient.getApiClient().getMovieList(new HashMap<String, String>(), callback = new CancelableCallback<>(new Callback<MovieListWrapper>() {
             @Override
             public void success(MovieListWrapper movieListWrapper, Response response) {
                 listner.onSuccess(movieListWrapper);
