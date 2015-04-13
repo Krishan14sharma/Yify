@@ -40,8 +40,6 @@ public class LoginFragment extends BaseFragment implements LoginView {
     ProgressBar progressBar;
     LoginPresenter presenter;
 
-    public LoginFragment() {
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

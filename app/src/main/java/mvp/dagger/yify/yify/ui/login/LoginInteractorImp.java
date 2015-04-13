@@ -7,6 +7,8 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import javax.inject.Inject;
+
 import mvp.dagger.yify.yify.api.ApiClient;
 import mvp.dagger.yify.yify.model.login.login_failure.LoginFailWrapper;
 import mvp.dagger.yify.yify.model.login.login_success.LoginSuccessWrapper;
@@ -20,9 +22,10 @@ import static mvp.dagger.yify.yify.util.CommonUtil.*;
  * Created by vardan sharma on 10-04-2015.
  */
 public class LoginInteractorImp implements LoginInteractor {
-    OnLoginFinishListner listner;
+     OnLoginFinishListner listner;
 
     public LoginInteractorImp(OnLoginFinishListner listner) {
+
         this.listner = listner;
     }
 

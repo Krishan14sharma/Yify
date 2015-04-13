@@ -59,7 +59,7 @@ public class ApiClient {
         @FormUrlEncoded
         @POST("/register.json")
         void registerUser(@Field("username") String uName, @Field("email") String email,
-                          @Field("password") String pass, Callback<String> response);
+                          @Field("password") String pass, @Field("application_key") String appKey, Callback<String> response);
 
         @FormUrlEncoded
         @POST("/user_get_key.json")
