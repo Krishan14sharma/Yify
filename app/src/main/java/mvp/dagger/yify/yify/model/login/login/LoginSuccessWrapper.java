@@ -1,12 +1,10 @@
 
-package mvp.dagger.yify.yify.model.login.login_success;
+package mvp.dagger.yify.yify.model.login.login;
 
 import javax.annotation.Generated;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import mvp.dagger.yify.yify.model.*;
 
 @Generated("org.jsonschema2pojo")
 public class LoginSuccessWrapper {

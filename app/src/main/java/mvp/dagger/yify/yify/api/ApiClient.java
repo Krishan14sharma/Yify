@@ -56,7 +56,7 @@ public class ApiClient {
         void getStreams(@Query("limit") int limit, @Query("offset") int offset, Callback<List<Movie>> callback);
 
         @FormUrlEncoded
-        @POST("/register.json")
+        @POST("/user_register.json.json")
         void registerUser(@Field("username") String uName, @Field("email") String email,
                           @Field("password") String pass, @Field("application_key") String appKey, Callback<String> response);
 

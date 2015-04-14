@@ -1,5 +1,5 @@
 
-package mvp.dagger.yify.yify.model.login.login_success;
+package mvp.dagger.yify.yify.model.register;
 
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;

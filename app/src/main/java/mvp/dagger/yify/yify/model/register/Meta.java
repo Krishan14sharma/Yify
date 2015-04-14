@@ -1,5 +1,5 @@
 
-package mvp.dagger.yify.yify.model.login.login_success;
+package mvp.dagger.yify.yify.model.register;
 
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
@@ -10,13 +10,13 @@ public class Meta {
 
     @SerializedName("server_time")
     @Expose
-    private int serverTime;
+    private Integer serverTime;
     @SerializedName("server_timezone")
     @Expose
     private String serverTimezone;
     @SerializedName("api_version")
     @Expose
-    private int apiVersion;
+    private Integer apiVersion;
     @SerializedName("execution_time")
     @Expose
     private String executionTime;
@@ -26,7 +26,7 @@ public class Meta {
      * @return
      *     The serverTime
      */
-    public int getServerTime() {
+    public Integer getServerTime() {
         return serverTime;
     }
 
@@ -35,7 +35,7 @@ public class Meta {
      * @param serverTime
      *     The server_time
      */
-    public void setServerTime(int serverTime) {
+    public void setServerTime(Integer serverTime) {
         this.serverTime = serverTime;
     }
 
@@ -62,7 +62,7 @@ public class Meta {
      * @return
      *     The apiVersion
      */
-    public int getApiVersion() {
+    public Integer getApiVersion() {
         return apiVersion;
     }
 
@@ -71,7 +71,7 @@ public class Meta {
      * @param apiVersion
      *     The api_version
      */
-    public void setApiVersion(int apiVersion) {
+    public void setApiVersion(Integer apiVersion) {
         this.apiVersion = apiVersion;
     }
 

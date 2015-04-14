@@ -22,14 +22,45 @@ public class SignUpModule {
 
     @Provides
     public SignUpPresenter provideSignUpPresenter(SignupView SignUpView, SignUpInteractor SignUpInteractor) {
-        return new SignUpPresenterImp(SignUpView, SignUpInteractor) {
+        return new SignUpPresenterImp(SignUpView) {
         };
     }
-
-    @Provides
-    public SignUpInteractor provideSignUpInteractor() {
-        return new SignUpInteractorImp();
-    }
-
+//
+//    @Provides
+//    public SignUpInteractor provideSignUpInteractor() {
+//        return new SignUpInteractorImp(provideSignUpPresenter());
+//    }
+//
+//    @Provides
+//    public OnSignUpFinishListner onSignUpFinishListner
+//
+//    {
+//        return new OnSignUpFinishListner() {
+//            @Override
+//            public void onSuccess() {
+//
+//            }
+//
+//            @Override
+//            public void onUserNameError() {
+//
+//            }
+//
+//            @Override
+//            public void onPasswordError() {
+//
+//            }
+//
+//            @Override
+//            public void onUserEmailError() {
+//
+//            }
+//
+//            @Override
+//            public void onFailure(String error) {
+//
+//            }
+//        };
+//    }
 
 }

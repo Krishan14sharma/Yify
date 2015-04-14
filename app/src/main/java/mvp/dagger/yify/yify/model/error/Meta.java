@@ -1,9 +1,10 @@
 
-package mvp.dagger.yify.yify.model.login.login_failure;
+package mvp.dagger.yify.yify.model.error;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class Meta {

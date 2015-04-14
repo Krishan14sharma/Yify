@@ -1,13 +1,13 @@
 
-package mvp.dagger.yify.yify.model.login.login_failure;
-
-import javax.annotation.Generated;
+package mvp.dagger.yify.yify.model.error;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import javax.annotation.Generated;
+
 @Generated("org.jsonschema2pojo")
-public class LoginFailWrapper {
+public class ErrorWrapper {
 
     @Expose
     private String status;

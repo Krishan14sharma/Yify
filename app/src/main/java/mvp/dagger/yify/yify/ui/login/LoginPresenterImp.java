@@ -23,9 +23,6 @@ public class LoginPresenterImp implements LoginPresenter, OnLoginFinishListner {
         }
     }
 
-    //todo  check this krishan is this the right way ??
-
-
     @Override
     public void onSuccess() {
         // todo save data to shared prefs etc

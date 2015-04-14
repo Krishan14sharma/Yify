@@ -7,22 +7,21 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import javax.inject.Inject;
-
 import mvp.dagger.yify.yify.api.ApiClient;
-import mvp.dagger.yify.yify.model.login.login_failure.LoginFailWrapper;
-import mvp.dagger.yify.yify.model.login.login_success.LoginSuccessWrapper;
+import mvp.dagger.yify.yify.model.error.ErrorWrapper;
+import mvp.dagger.yify.yify.model.login.login.LoginSuccessWrapper;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-import static mvp.dagger.yify.yify.util.CommonUtil.*;
+import static mvp.dagger.yify.yify.util.CommonUtil.getAppKey;
+import static mvp.dagger.yify.yify.util.CommonUtil.showToast;
 
 /**
  * Created by vardan sharma on 10-04-2015.
  */
 public class LoginInteractorImp implements LoginInteractor {
-     OnLoginFinishListner listner;
+    OnLoginFinishListner listner;
 
     public LoginInteractorImp(OnLoginFinishListner listner) {
 
@@ -53,7 +52,7 @@ public class LoginInteractorImp implements LoginInteractor {
                     String status = jsonObject.getString("status");
                     if (status.equals("error")) {
                         Gson gson = new Gson();
-                        LoginFailWrapper errorObj = gson.fromJson(loginResponse, LoginFailWrapper.class);
+                        ErrorWrapper errorObj = gson.fromJson(loginResponse, ErrorWrapper.class);
                         listner.onFailure(errorObj.getStatusMessage());
                     } else {
                         // Login successful use diff object to parse data and get the user id
@@ -71,7 +70,6 @@ public class LoginInteractorImp implements LoginInteractor {
             @Override
             public void failure(RetrofitError error) {
                 listner.onFailure(error.getMessage());
-
             }
         });
     }

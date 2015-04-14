@@ -11,6 +11,7 @@ import android.widget.ScrollView;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import mvp.dagger.yify.yify.R;
 import mvp.dagger.yify.yify.ui.BaseFragment;
 import mvp.dagger.yify.yify.ui.login.LoginActivity;
@@ -50,9 +51,23 @@ public class SignUpFragment extends BaseFragment implements SignupView {
     }
 
     @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        presenter = new SignUpPresenterImp(this);//todo remove these
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.reset(this);
+    }
+
+    @OnClick(R.id.bt_register)
+    public void onRegisterClick() {
+        String email = mEtEmail.getText().toString().trim();
+        String pass = mEtPassword.getText().toString().trim();
+        String userName = mEtUsername.getText().toString().trim();
+        presenter.signUpUser(userName, pass, email);
     }
 
     @Override
