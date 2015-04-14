@@ -10,7 +10,8 @@ import mvp.dagger.yify.yify.ui.common.ActivityScope;
 @ActivityScope
 @Component(modules = MainModule.class, dependencies = BaseAppComponent.class)
 public interface MainComponent {
-    void inject(MainView mainView);
 
-    MainPresenter getMainPresenter();
+    void inject(MainActivity.PlaceholderFragment fragment);
+
+    MainPresenter getMainPresenter(); // Exposing the methods providing injections
 }
