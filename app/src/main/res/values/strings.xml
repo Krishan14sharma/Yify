@@ -13,6 +13,8 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="register_success_msg">Registration successful</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Yify</string>
     <string name="user_name_empty_error">User-name cannot be empty</string>
     <string name="email_empty_error">Email cannot be empty</string>
 </resources>

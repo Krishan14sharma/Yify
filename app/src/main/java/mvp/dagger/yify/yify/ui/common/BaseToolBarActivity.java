@@ -9,6 +9,8 @@ import com.sriramramani.droid.inspector.server.ViewServer;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.Optional;
+import mvp.dagger.yify.yify.BaseApp;
+import mvp.dagger.yify.yify.BaseAppComponent;
 import mvp.dagger.yify.yify.BuildConfig;
 import mvp.dagger.yify.yify.R;
 
@@ -16,7 +18,7 @@ import mvp.dagger.yify.yify.R;
  * Created by Krishan on 17/12/14.
  * Contains the logic for Toolbar.In order to use the Toolbar you need to remove the Action Bar using styles and include include_toolbar layout in your main xml.
  */
-public class BaseToolBarActivity extends ActionBarActivity{
+public class BaseToolBarActivity extends ActionBarActivity {
 
 
     @Optional
@@ -29,7 +31,7 @@ public class BaseToolBarActivity extends ActionBarActivity{
         super.onPostCreate(savedInstanceState);
         ButterKnife.inject(this); // here because the setcontent view lies in onCreate of child classes.
 
-        if(BuildConfig.ENABLE_VIEW_SERVER) ViewServer.get(this).addWindow(this);
+        if (BuildConfig.ENABLE_VIEW_SERVER) ViewServer.get(this).addWindow(this);
 
         if (mToolbar != null) {
             setSupportActionBar(mToolbar);
@@ -42,7 +44,7 @@ public class BaseToolBarActivity extends ActionBarActivity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(BuildConfig.ENABLE_VIEW_SERVER)ViewServer.get(this).removeWindow(this);
+        if (BuildConfig.ENABLE_VIEW_SERVER) ViewServer.get(this).removeWindow(this);
     }
 
 //    private void showParentActivity(Intent upIntent) {
@@ -64,7 +66,7 @@ public class BaseToolBarActivity extends ActionBarActivity{
     @Override
     protected void onResume() {
         super.onResume();
-        if(BuildConfig.ENABLE_VIEW_SERVER) ViewServer.get(this).setFocusedWindow(this);
+        if (BuildConfig.ENABLE_VIEW_SERVER) ViewServer.get(this).setFocusedWindow(this);
     }
 
 //    @Override
@@ -78,4 +80,9 @@ public class BaseToolBarActivity extends ActionBarActivity{
 //            finish();
 //        }
 //    }
+
+    public BaseAppComponent getBaseComponent() {
+        return (BaseApp.getContext()).getComponent();
+    }
+
 }

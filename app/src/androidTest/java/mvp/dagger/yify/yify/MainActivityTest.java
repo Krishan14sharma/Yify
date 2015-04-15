@@ -2,7 +2,7 @@ package mvp.dagger.yify.yify;
 
 import android.test.ActivityInstrumentationTestCase2;
 
-import mvp.dagger.yify.yify.ui.home.MainActivity;
+import mvp.dagger.yify.yify.ui.activity.MainActivity;
 
 /**
  * Created by krishan on 9/4/15.
