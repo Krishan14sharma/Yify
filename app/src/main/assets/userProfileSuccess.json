@@ -1,0 +1,27 @@
+{
+  "status": "ok",
+  "status_message": "Query was successful",
+  "data": {
+    "id": 917811,
+    "username": "vardan1992",
+    "email": "vardaan1992sharma@gmail.com",
+    "group": "user",
+    "ip_address": "124.253.254.180",
+    "user_key": "d260ac8680e24780abb9a4c9e9f3255a",
+    "url": "https:\/\/yts.to\/user\/vardan1992",
+    "profile_hidden": false,
+    "about_text": "",
+    "small_avatar_image": "https:\/\/s.ynet.io\/assets\/images\/users\/thumb\/default_avatar.jpg",
+    "medium_avatar_image": "https:\/\/s.ynet.io\/assets\/images\/users\/default_avatar.jpg",
+    "date_joined": "2014-11-30 16:57:25",
+    "date_joined_unix": 1417319845,
+    "date_last_seen": "2015-02-04 01:47:53",
+    "date_last_seen_unix": 1422967673
+  },
+  "@meta": {
+    "server_time": 1429181754,
+    "server_timezone": "Pacific\/Auckland",
+    "api_version": 2,
+    "execution_time": "5.05 ms"
+  }
+}
