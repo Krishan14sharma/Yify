@@ -1,7 +1,7 @@
 package mvp.dagger.yify.yify.ui.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +18,8 @@ import mvp.dagger.yify.yify.domain.presenter.UserProfilePresenter;
 import mvp.dagger.yify.yify.domain.presenter.UserProfilePresenterImp;
 import mvp.dagger.yify.yify.ui.common.BaseFragment;
 import mvp.dagger.yify.yify.ui.view.UserProfileView;
-import mvp.dagger.yify.yify.util.CircleTransform;
-import mvp.dagger.yify.yify.util.CommonUtil;
 
-import static mvp.dagger.yify.yify.util.CommonUtil.*;
+import static mvp.dagger.yify.yify.util.CommonUtil.showToast;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -37,6 +35,8 @@ public class UserProfileFragment extends BaseFragment implements UserProfileView
     EditText mEdtUserEmail;
     @InjectView(R.id.edt_user_desc)
     EditText mEdtUserDesc;
+    @InjectView(R.id.img_user_image_edit)
+    ImageView mImgUserImageEdit;
 
     public UserProfileFragment() {
     }
@@ -46,7 +46,7 @@ public class UserProfileFragment extends BaseFragment implements UserProfileView
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
         ButterKnife.inject(this, view);
-        presenter = new UserProfilePresenterImp(new UserProfileInteractorImp(), this);
+        presenter = new UserProfilePresenterImp(new UserProfileInteractorImp(), this); // todo remove this with dagger
         return view;
     }
 
@@ -76,7 +76,10 @@ public class UserProfileFragment extends BaseFragment implements UserProfileView
 
     @Override
     public void setUserProfile(String url) {
-        Picasso.with(getActivity()).load(url).transform(new CircleTransform()).into(mImvUserImage);
+        Picasso.with(getActivity())
+                .load(url)
+//                .transform(new CircleTransform()).
+                .into(mImvUserImage);
     }
 
     @Override
@@ -86,16 +89,19 @@ public class UserProfileFragment extends BaseFragment implements UserProfileView
 
     @Override
     public void setFieldsEditable() {
-        mEdtUserEmail.setEnabled(true);
-        mEdtUserName.setEnabled(true);
-        mEdtUserDesc.setEnabled(true);
+        mEdtUserEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        mEdtUserName.setInputType(InputType.TYPE_CLASS_TEXT);
+        mEdtUserDesc.setInputType(InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE);
+        mImgUserImageEdit.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void setFieldsNonEditable() {
-        mEdtUserEmail.setEnabled(false);
-        mEdtUserName.setEnabled(false);
-        mEdtUserDesc.setEnabled(false);
+        mEdtUserEmail.setInputType(InputType.TYPE_NULL);
+        mEdtUserName.setInputType(InputType.TYPE_NULL);
+        mEdtUserDesc.setInputType(InputType.TYPE_NULL);
+        mImgUserImageEdit.setVisibility(View.GONE);
+
     }
 
     @Override

@@ -38,6 +38,7 @@ public class UserProfilePresenterImp implements UserProfilePresenter, OnFetchPro
         view.setUsername(name);
         view.setUserProfile(url);
         view.setProfileDesc(desc);
+        view.setFieldsEditable();
     }
 
     @Override
