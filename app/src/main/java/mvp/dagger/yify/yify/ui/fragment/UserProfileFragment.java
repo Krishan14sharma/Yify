@@ -13,8 +13,12 @@ import com.squareup.picasso.Picasso;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import mvp.dagger.yify.yify.R;
+import mvp.dagger.yify.yify.domain.interactors.UserProfileInteractorImp;
+import mvp.dagger.yify.yify.domain.presenter.UserProfilePresenter;
+import mvp.dagger.yify.yify.domain.presenter.UserProfilePresenterImp;
 import mvp.dagger.yify.yify.ui.common.BaseFragment;
 import mvp.dagger.yify.yify.ui.view.UserProfileView;
+import mvp.dagger.yify.yify.util.CircleTransform;
 import mvp.dagger.yify.yify.util.CommonUtil;
 
 import static mvp.dagger.yify.yify.util.CommonUtil.*;
@@ -24,7 +28,7 @@ import static mvp.dagger.yify.yify.util.CommonUtil.*;
  */
 public class UserProfileFragment extends BaseFragment implements UserProfileView {
 
-
+    UserProfilePresenter presenter;
     @InjectView(R.id.imv_user_image)
     ImageView mImvUserImage;
     @InjectView(R.id.edt_user_name)
@@ -42,10 +46,19 @@ public class UserProfileFragment extends BaseFragment implements UserProfileView
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
         ButterKnife.inject(this, view);
+        presenter = new UserProfilePresenterImp(new UserProfileInteractorImp(), this);
         return view;
     }
 
     @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        presenter.getProfileData();
+
+    }
+
+    @Override
+
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.reset(this);
@@ -63,7 +76,7 @@ public class UserProfileFragment extends BaseFragment implements UserProfileView
 
     @Override
     public void setUserProfile(String url) {
-        Picasso.with(getActivity()).load(url).into(mImvUserImage);
+        Picasso.with(getActivity()).load(url).transform(new CircleTransform()).into(mImvUserImage);
     }
 
     @Override

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#07090d"
+    android:background="#010D13"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     tools:context="mvp.dagger.yify.yify.ui.fragment.UserProfileFragment">
@@ -11,7 +11,6 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#07090d"
         tools:context="mvp.dagger.yify.yify.ui.fragment.UserProfileFragment">
 
         <ImageView
@@ -44,6 +43,9 @@
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
             tools:text="vardan199sharma@gmail.coom"
             android:id="@+id/edt_user_email"
+            android:textColor="#FFF"
+            android:background="@null"
+            android:editable="false"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/edt_user_name"
             android:layout_marginTop="16dp" />

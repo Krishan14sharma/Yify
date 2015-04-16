@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import mvp.dagger.yify.yify.R;
+import mvp.dagger.yify.yify.ui.fragment.SignUpFragment;
+import mvp.dagger.yify.yify.ui.fragment.UserProfileFragment;
 
 public class UserProfileActivity extends ActionBarActivity {
 
@@ -13,6 +15,11 @@ public class UserProfileActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.container, new UserProfileFragment())
+                    .commit();
+        }
     }
 
 

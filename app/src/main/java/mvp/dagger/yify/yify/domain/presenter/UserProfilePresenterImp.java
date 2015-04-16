@@ -18,6 +18,7 @@ public class UserProfilePresenterImp implements UserProfilePresenter, OnFetchPro
 
     @Override
     public void getProfileData() {
+        view.showLoading();
         interator.getUserProfileData(this);
     }
 
@@ -28,6 +29,7 @@ public class UserProfilePresenterImp implements UserProfilePresenter, OnFetchPro
 
     @Override
     public void onSucess(UserProfileWrapper profileWrapper) {
+        view.hideLoading();
         String email = profileWrapper.getData().getEmail();
         String desc = profileWrapper.getData().getAboutText();
         String name = profileWrapper.getData().getUsername();
@@ -40,6 +42,7 @@ public class UserProfilePresenterImp implements UserProfilePresenter, OnFetchPro
 
     @Override
     public void onFailure(String error) {
+        view.hideLoading();
         view.showErrorMsg(error);
     }
 }
