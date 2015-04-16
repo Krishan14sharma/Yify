@@ -1,6 +1,7 @@
 package mvp.dagger.yify.yify.ui.common;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
@@ -19,25 +20,33 @@ import static mvp.dagger.yify.yify.util.CommonUtil.showToast;
  */
 public class BaseFragment extends Fragment implements BaseView {
 
-    @InjectView(R.id.progressBar)
-    ProgressBar progressBar;
+    //    @InjectView(R.id.progressBar)
+    ProgressDialog dialog;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.inject(getActivity());
+        setUpDialog();
+    }
+
+    private void setUpDialog() {
+        dialog = new ProgressDialog(getActivity());
+        dialog.setIndeterminate(false);
+        dialog.setMessage("Loading");
+        dialog.setCancelable(false);
     }
 
     //todo push both the showLoading and hide loading into the base fragment or activity
     @Override
     public void showLoading() {
-        progressBar.setVisibility(View.VISIBLE);
+        dialog.show();
     }
 
 
     @Override
     public void hideLoading() {
-        progressBar.setVisibility(View.GONE);
+        dialog.dismiss();
     }
 
 
@@ -49,5 +58,14 @@ public class BaseFragment extends Fragment implements BaseView {
     @Override
     public void onHideError() {
         //todo what to do here??
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (dialog != null) {
+            dialog.cancel();
+            dialog = null;
+        }
     }
 }

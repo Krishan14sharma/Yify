@@ -26,14 +26,10 @@ import static mvp.dagger.yify.yify.util.CommonUtil.showToast;
  * Created by Vardan sharma on 10-04-2015.
  */
 public class SignUpInteractorImp implements SignUpInteractor {
-    OnSignUpFinishListner onSignUpFinishListner;
 
-    public SignUpInteractorImp(OnSignUpFinishListner onSignUpFinishListner) {
-        this.onSignUpFinishListner = onSignUpFinishListner;
-    }
 
     @Override
-    public boolean validateFields(String userName, String email, String password) {
+    public boolean validateFields(String userName, String email, String password, OnSignUpFinishListner onSignUpFinishListner) {
         if (TextUtils.isEmpty(userName))
             onSignUpFinishListner.onUserNameError(BaseApp.getContext().getString(R.string.user_name_empty_error));
         else if (TextUtils.isEmpty(email))
@@ -52,7 +48,7 @@ public class SignUpInteractorImp implements SignUpInteractor {
     }
 
     @Override
-    public void registerUser(String userName, String email, String password) {
+    public void registerUser(String userName, String email, String password, final OnSignUpFinishListner onSignUpFinishListner) {
         ApiClient.getApiClientWithStringConverter().registerUser(userName, email, password,
                 CommonUtil.getAppKey(), new CancelableCallback<String>(new Callback<String>() {
                     @Override

@@ -17,4 +17,5 @@
     <string name="drawer_close">Yify</string>
     <string name="user_name_empty_error">User-name cannot be empty</string>
     <string name="email_empty_error">Email cannot be empty</string>
+    <string name="title_activity_user_profile">UserProfile</string>
 </resources>

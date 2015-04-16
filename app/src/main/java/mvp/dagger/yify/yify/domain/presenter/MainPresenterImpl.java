@@ -10,9 +10,9 @@ import retrofit.RetrofitError;
  */
 public class MainPresenterImpl implements MainPresenter, FinishListner {
 
-    public MainPresenterImpl(MainView mainView,MainInteractor mainInteractor) {
+    public MainPresenterImpl(MainView mainView, MainInteractor mainInteractor) {
         this.mainView = mainView;
-        this.mainInteractor=mainInteractor;
+        this.mainInteractor = mainInteractor;
     }
 
     MainView mainView;

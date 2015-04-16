@@ -1,0 +1,78 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#07090d"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:context="mvp.dagger.yify.yify.ui.fragment.UserProfileFragment">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#07090d"
+        tools:context="mvp.dagger.yify.yify.ui.fragment.UserProfileFragment">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/imv_user_image"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/pic"
+            android:layout_marginTop="100dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Vardan sharma"
+            android:id="@+id/edt_user_name"
+            android:background="@null"
+            android:editable="false"
+            android:textColor="#650f2d"
+            android:textStyle="bold"
+            android:textSize="21dp"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:layout_below="@+id/imv_user_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="35dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            tools:text="vardan199sharma@gmail.coom"
+            android:id="@+id/edt_user_email"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/edt_user_name"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="About me"
+            android:id="@+id/txt_abt_me_label"
+            android:layout_below="@+id/edt_user_email"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="#650f2d"
+            android:layout_marginTop="38dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Lorem ipsum dolor sit amet, accusata rationibus duo id. Eam id veniam eripuit, quas saperet patrioque pro ad. Mei eu quodsi reformidans accommodare, at possim scripserit his, agam labitur eam at. Ea nec unum modus nominati, id consequat scripserit omittantur his, nobis consul sadipscing at sed. Id eam elitr decore honestatis. Qui iisque persius pertinacia id, dicat veniam recteque mea ad. Qui harum noster aliquid ei, aperiam alterum petentium no vix, mea erat ancillae recteque cu."
+            android:id="@+id/edt_user_desc"
+            android:background="@null"
+            android:editable="false"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_below="@+id/txt_abt_me_label"
+            android:layout_alignLeft="@+id/txt_abt_me_label"
+            android:layout_alignStart="@+id/txt_abt_me_label"
+            android:layout_marginTop="29dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+</ScrollView>

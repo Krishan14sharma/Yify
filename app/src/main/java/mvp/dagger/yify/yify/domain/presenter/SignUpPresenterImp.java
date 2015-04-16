@@ -1,5 +1,7 @@
 package mvp.dagger.yify.yify.domain.presenter;
 
+import javax.inject.Inject;
+
 import mvp.dagger.yify.yify.domain.interactors.SignUpInteractor;
 import mvp.dagger.yify.yify.domain.interactors.SignUpInteractorImp;
 import mvp.dagger.yify.yify.ui.view.SignupView;
@@ -12,17 +14,17 @@ public class SignUpPresenterImp implements SignUpPresenter, OnSignUpFinishListne
     SignUpInteractor signUpInteractor;
     SignupView signupView;
 
-    public SignUpPresenterImp(SignupView signUpView) {
+    public SignUpPresenterImp(SignupView signUpView, SignUpInteractor interactor) {
         this.signupView = signUpView;
-        this.signUpInteractor = new SignUpInteractorImp(this);
+        this.signUpInteractor = interactor;
     }
 
     @Override
     public void signUpUser(String username, String pass, String email) {
         signupView.disableRegisterBtn();
         signupView.showLoading();
-        if (signUpInteractor.validateFields(username, email, pass)) {
-            signUpInteractor.registerUser(username, email, pass);
+        if (signUpInteractor.validateFields(username, email, pass, this)) {
+            signUpInteractor.registerUser(username, email, pass, this);
         }
     }
 
@@ -31,7 +33,6 @@ public class SignUpPresenterImp implements SignUpPresenter, OnSignUpFinishListne
         signupView.hideLoading();
         signupView.showSignUpSuccessMsg();
         signupView.navigateToLogin();
-        signupView.enableRegisterBtn();
     }
 
     @Override

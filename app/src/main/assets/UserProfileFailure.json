@@ -1,0 +1,10 @@
+{
+  "status": "error",
+  "status_message": "User does not exist",
+  "@meta": {
+    "server_time": 1429182304,
+    "server_timezone": "Pacific\/Auckland",
+    "api_version": 2,
+    "execution_time": "4.24 ms"
+  }
+}

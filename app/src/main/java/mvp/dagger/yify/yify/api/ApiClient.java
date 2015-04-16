@@ -3,9 +3,11 @@ package mvp.dagger.yify.yify.api;
 import java.util.List;
 import java.util.Map;
 
+import mvp.dagger.yify.yify.api.util.CancelableCallback;
 import mvp.dagger.yify.yify.api.util.StringConverter;
 import mvp.dagger.yify.yify.model.Movie;
 import mvp.dagger.yify.yify.model.MovieListWrapper;
+import mvp.dagger.yify.yify.model.user_profile.UserProfileWrapper;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.http.Field;
@@ -66,6 +68,8 @@ public class ApiClient {
         void LoginUser(@Field("username") String uName, @Field("password") String pass
                 , @Field("application_key") String appKey, Callback<String> response);
 
+        @GET("/user_profile.json")
+        void getUserProfile(@Query("user_key") String userKey, Callback<String> userProfileWrapperCallback);
 
 //        @GET("/movie.json")
 //        void getMovieDetail(@Query("id") String id, Callback<MovieDetail> response);

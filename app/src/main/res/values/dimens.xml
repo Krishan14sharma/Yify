@@ -3,4 +3,13 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="toolbar_height">56dp</dimen>
+
+    <dimen name="spacing_micro">4dp</dimen>
+    <dimen name="spacing_minor">8dp</dimen>
+    <dimen name="spacing_major">16dp</dimen>
+    <dimen name="spacing_massive">24dp</dimen>
+    <dimen name="drawer_login_height">180dp</dimen>
+    <dimen name="drawer_movie_checkin_poster_height">90dp</dimen>
+    <dimen name="drawer_account_avatar_width">56dp</dimen>
+    <dimen name="drawer_account_avatar_height">56dp</dimen>
 </resources>
