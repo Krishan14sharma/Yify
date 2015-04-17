@@ -24,13 +24,9 @@ import static mvp.dagger.yify.yify.util.CommonUtil.showToast;
 public class LoginInteractorImp implements LoginInteractor {
     OnLoginFinishListner listner;
 
-    public LoginInteractorImp(OnLoginFinishListner listner) {
-
-        this.listner = listner;
-    }
 
     @Override
-    public boolean validateFields(String email, String pass) {
+    public boolean validateFields(String email, String pass, OnLoginFinishListner listner) {
         //Check against empty username
         if (TextUtils.isEmpty(email))
             listner.onUserNameError();
@@ -44,7 +40,7 @@ public class LoginInteractorImp implements LoginInteractor {
     }
 
     @Override
-    public void loginUser(String username, String pass) {
+    public void loginUser(String username, String pass, final OnLoginFinishListner listner) {
         ApiClient.getApiClientWithStringConverter().LoginUser(username, pass, getAppKey(), new Callback<String>() {
             @Override
             public void success(String loginResponse, Response response) {

@@ -20,15 +20,17 @@ public class UserProfilePresenterImp implements UserProfilePresenter, OnFetchPro
     public void getProfileData() {
         view.showLoading();
         interator.getUserProfileData(this);
+        view.setFieldsNonEditable();
     }
 
     @Override
-    public void onSaveEvent(String action) {
-
+    public void onSaveEvent() {
+        view.setFieldsNonEditable();
     }
 
     @Override
     public void updateProfileData(String name, String email, String discription) {
+        view.showLoading();
         interator.updateUserProfileData(name, email, discription, this);
     }
 

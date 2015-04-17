@@ -25,10 +25,12 @@ public class UserProfileInteractorImp implements UserProfileInterator {
     // todo we need a way to avoid writing these code
     @Override
     public void getUserProfileData(final OnFetchProfileDataFinishListener listener) {
-        String key = "d260ac8680e24780abb9a4c9e9f3255a";
+        String key = "d260ac8680e24780abb9a4c9e9f3255a";//TODO Get these from the preferences
         ApiClient.getApiClientWithStringConverter().getUserProfile(key, new CancelableCallback<String>(new Callback<String>() {
             @Override
             public void success(String data, Response response) {
+
+                // Todo change this with a custom serializer
                 try {
                     JSONObject jsonObject = new JSONObject(data);
                     String status = jsonObject.getString("status");

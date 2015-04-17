@@ -67,6 +67,7 @@ public class UserProfileFragment extends BaseFragment implements UserProfileView
 
     @OnClick(R.id.bt_save)
     public void onSaveBtnClicked() {
+        presenter.onSaveEvent();
         String email = mEdtUserEmail.getText().toString().trim();
         String name = mEdtUserName.getText().toString().trim();
         String desc = mEdtUserDesc.getText().toString().trim();

@@ -11,9 +11,9 @@ public class LoginPresenterImp implements LoginPresenter, OnLoginFinishListner {
     LoginView view;
     LoginInteractor interactor;
 
-    public LoginPresenterImp(LoginView view) {
+    public LoginPresenterImp(LoginView view, LoginInteractor interactor) {
         this.view = view;
-        interactor = new LoginInteractorImp(this);
+        this.interactor = interactor;
     }
 
 
@@ -21,9 +21,9 @@ public class LoginPresenterImp implements LoginPresenter, OnLoginFinishListner {
     public void loginUser(String email, String pass) {
         view.showLoading();
         view.disableLoginBtn();
-        if (interactor.validateFields(email, pass)) {
+        if (interactor.validateFields(email, pass, this)) {
             view.showLoading();
-            interactor.loginUser(email, pass);
+            interactor.loginUser(email, pass, this);
         }
     }
 
