@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +26,10 @@ import mvp.dagger.yify.yify.di.component.MainComponent;
 import mvp.dagger.yify.yify.di.module.MainModule;
 import mvp.dagger.yify.yify.domain.presenter.MainPresenter;
 import mvp.dagger.yify.yify.model.MovieListWrapper;
+import mvp.dagger.yify.yify.ui.adapter.MainActivityAdapter;
 import mvp.dagger.yify.yify.ui.common.BaseToolBarActivity;
 import mvp.dagger.yify.yify.ui.view.MainView;
+import mvp.dagger.yify.yify.util.SpacesItemDecoration;
 import retrofit.RetrofitError;
 
 
@@ -45,8 +49,7 @@ public class MainActivity extends BaseToolBarActivity {
                     .add(R.id.container, new PlaceholderFragment(), "tag")
                     .commit();
         }
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-                mToolbar, R.string.drawer_open, R.string.drawer_close) {
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,  mToolbar, R.string.drawer_open, R.string.drawer_close) {
 
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
@@ -85,6 +88,8 @@ public class MainActivity extends BaseToolBarActivity {
 
         @Inject
         MainPresenter presenter; // should not be private for dagger magic
+        @InjectView(R.id.recycler_view)
+        RecyclerView mRecyclerView;
 
         public PlaceholderFragment() {
         }
@@ -95,6 +100,8 @@ public class MainActivity extends BaseToolBarActivity {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             ButterKnife.inject(this, rootView);
             setUp();
+            mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+            mRecyclerView.addItemDecoration(new SpacesItemDecoration(getResources().getDimensionPixelSize(R.dimen.item_spacing)));
             return rootView;
         }
 
@@ -117,6 +124,7 @@ public class MainActivity extends BaseToolBarActivity {
         @Override
         public void showData(MovieListWrapper movieListWrapper) {
             Toast.makeText(getActivity().getApplicationContext(), movieListWrapper.getData().getMovies().size() + "", Toast.LENGTH_SHORT).show();
+            mRecyclerView.setAdapter(new MainActivityAdapter(movieListWrapper));
         }
 
         @Override
@@ -127,7 +135,6 @@ public class MainActivity extends BaseToolBarActivity {
         @Override
         public void hideLoading() {
             progressBar.setVisibility(View.GONE);
-
         }
 
         @Override

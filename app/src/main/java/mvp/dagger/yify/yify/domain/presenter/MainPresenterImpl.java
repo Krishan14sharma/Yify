@@ -38,6 +38,7 @@ public class MainPresenterImpl implements MainPresenter, FinishListner {
 
     @Override
     public void onFailure(RetrofitError error) {
+        error.printStackTrace();
         mainView.hideLoading();
         mainView.showError(error);
     }

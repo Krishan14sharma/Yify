@@ -1,1 +1,2 @@
-include ':app'
+include ':app', ':RecycleViewRenderer'
+project(':RecycleViewRenderer').projectDir = new File('library/RecycleViewRenderer')

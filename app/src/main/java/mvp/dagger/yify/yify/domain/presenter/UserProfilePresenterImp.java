@@ -29,7 +29,7 @@ public class UserProfilePresenterImp implements UserProfilePresenter, OnFetchPro
 
     @Override
     public void updateProfileData(String name, String email, String discription) {
-        interator.updateUserProfileData();
+        interator.updateUserProfileData(name, email, discription, this);
     }
 
     @Override

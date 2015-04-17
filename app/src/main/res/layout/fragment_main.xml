@@ -6,7 +6,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity$PlaceholderFragment">
+    tools:context=".MainActivity$PlaceholderFragment"
+    android:background="@color/bg_color"
+    >
 
     <ProgressBar
         android:layout_width="wrap_content"
@@ -15,4 +17,11 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:visibility="gone" />
+
+    <view
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        class="android.support.v7.widget.RecyclerView"
+        android:id="@+id/recycler_view"
+        />
 </RelativeLayout>
