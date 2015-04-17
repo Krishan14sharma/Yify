@@ -1,4 +1,4 @@
-package mvp.dagger.yify.yify.domain.presenter;
+ package mvp.dagger.yify.yify.domain.presenter;
 
 import mvp.dagger.yify.yify.domain.interactors.UserProfileInterator;
 import mvp.dagger.yify.yify.model.user_profile.UserProfileWrapper;
@@ -20,16 +20,18 @@ public class UserProfilePresenterImp implements UserProfilePresenter, OnFetchPro
     public void getProfileData() {
         view.showLoading();
         interator.getUserProfileData(this);
+        view.setFieldsNonEditable();
     }
 
     @Override
-    public void onSaveEvent(String action) {
-
+    public void onSaveEvent() {
+        view.setFieldsNonEditable();
     }
 
     @Override
     public void updateProfileData(String name, String email, String discription) {
-        interator.updateUserProfileData();
+        view.showLoading();
+        interator.updateUserProfileData(name, email, discription, this);
     }
 
     @Override
@@ -48,7 +50,6 @@ public class UserProfilePresenterImp implements UserProfilePresenter, OnFetchPro
         view.setUsername(name);
         view.setUserProfile(url);
         view.setProfileDesc(desc);
-        view.setFieldsEditable();
     }
 
     @Override

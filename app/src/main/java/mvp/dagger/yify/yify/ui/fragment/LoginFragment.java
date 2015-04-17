@@ -14,7 +14,16 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import mvp.dagger.yify.yify.BaseApp;
+import mvp.dagger.yify.yify.BaseAppComponent;
 import mvp.dagger.yify.yify.R;
+import mvp.dagger.yify.yify.di.component.DaggerLoginComponent;
+import mvp.dagger.yify.yify.di.component.DaggerSignUpComponent;
+import mvp.dagger.yify.yify.di.component.LoginComponent;
+import mvp.dagger.yify.yify.di.component.SignUpComponent;
+import mvp.dagger.yify.yify.di.module.LoginModule;
+import mvp.dagger.yify.yify.di.module.MainModule;
+import mvp.dagger.yify.yify.di.module.SignUpModule;
 import mvp.dagger.yify.yify.domain.presenter.LoginPresenter;
 import mvp.dagger.yify.yify.domain.presenter.LoginPresenterImp;
 import mvp.dagger.yify.yify.ui.common.BaseFragment;
@@ -49,13 +58,24 @@ public class LoginFragment extends BaseFragment implements LoginView {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.inject(this, rootView);
+        setPasswordError();
+        setUpDagger();
         return rootView;
+    }
+
+    private void setUpDagger() {
+        BaseAppComponent baseAppComponent = (BaseApp.getContext()).getComponent();
+        LoginComponent loginComponent = DaggerLoginComponent.builder()
+                .baseAppComponent(baseAppComponent)
+                .loginModule(new LoginModule(this))
+                .build();
+        loginComponent.inject(this);
+        presenter = loginComponent.getLoginPresenter();
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter = new LoginPresenterImp(this); // todo inject this using Dagger
     }
 
     @Override
@@ -95,7 +115,9 @@ public class LoginFragment extends BaseFragment implements LoginView {
     }
 
     @Override
-    public void enableLoginBtn() { mBtLogin.setClickable(true); }
+    public void enableLoginBtn() {
+        mBtLogin.setClickable(true);
+    }
 
     @OnClick(R.id.bt_login)
     public void loginClicked() {

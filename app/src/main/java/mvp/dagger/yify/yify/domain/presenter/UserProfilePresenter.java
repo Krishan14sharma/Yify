@@ -6,7 +6,7 @@ package mvp.dagger.yify.yify.domain.presenter;
 public interface UserProfilePresenter {
     void getProfileData();
 
-    void onSaveEvent(String action);
+    void onSaveEvent();
 
     void updateProfileData(String name, String email, String discription);
 
