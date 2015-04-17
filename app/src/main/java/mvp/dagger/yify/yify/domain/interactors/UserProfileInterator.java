@@ -8,5 +8,5 @@ import mvp.dagger.yify.yify.domain.presenter.OnFetchProfileDataFinishListener;
 public interface UserProfileInterator {
     void getUserProfileData(OnFetchProfileDataFinishListener listener);
 
-    void updateUserProfileData();
+    void updateUserProfileData(String name, String email, String desc, OnFetchProfileDataFinishListener listenerInter);
 }

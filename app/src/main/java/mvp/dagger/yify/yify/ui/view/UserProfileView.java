@@ -16,6 +16,14 @@ public interface UserProfileView extends BaseView {
 
     void setFieldsEditable();
 
+    void hideEditBtn();
+
+    void hideSaveBtn();
+
+    void showEditBtn();
+
+    void showSaveBtn();
+
     void setFieldsNonEditable();
 
     void showErrorMsg(String msg);

@@ -95,10 +95,7 @@ public class LoginFragment extends BaseFragment implements LoginView {
     }
 
     @Override
-    public void enableLoginBtn() {
-        mBtLogin.setClickable(true);
-
-    }
+    public void enableLoginBtn() { mBtLogin.setClickable(true); }
 
     @OnClick(R.id.bt_login)
     public void loginClicked() {

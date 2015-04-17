@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#010D13"
+    android:background="#fff"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     tools:context="mvp.dagger.yify.yify.ui.fragment.UserProfileFragment">
@@ -38,13 +38,11 @@
         </FrameLayout>
 
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Vardan sharma"
             android:gravity="center_horizontal"
             android:id="@+id/edt_user_name"
-            android:background="@null"
-            android:inputType="none"
             android:hint="Enter your name"
             android:textColor="#650f2d"
             android:textStyle="bold"
@@ -55,13 +53,13 @@
             android:layout_marginTop="35dp" />
 
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
             tools:text="vardan199sharma@gmail.coom"
             android:hint="Enter your Enail address"
             android:id="@+id/edt_user_email"
-            android:textColor="#FFF"
+            android:textColor="#000"
             android:inputType="none"
             android:gravity="center_horizontal"
             android:layout_centerHorizontal="true"
@@ -86,17 +84,42 @@
             tools:text="Lorem ipsum dolor sit amet, accusata rationibus duo id. Eam id veniam eripuit, quas saperet patrioque pro ad. Mei eu quodsi reformidans accommodare, at possim scripserit his, agam labitur eam at. Ea nec unum modus nominati, id consequat scripserit omittantur his, nobis consul sadipscing at sed. Id eam elitr decore honestatis. Qui iisque persius pertinacia id, dicat veniam recteque mea ad. Qui harum noster aliquid ei, aperiam alterum petentium no vix, mea erat ancillae recteque cu."
             android:id="@+id/edt_user_desc"
             android:hint="Tell us about yourself"
-            android:inputType="none"
-            android:minLines="3"
-            android:maxLines="7"
             android:singleLine="false"
-            android:textColor="#FFF"
+            android:textColor="#000"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_below="@+id/txt_abt_me_label"
             android:layout_alignLeft="@+id/txt_abt_me_label"
             android:layout_alignStart="@+id/txt_abt_me_label"
             android:layout_marginTop="29dp"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:lines="5" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/fl_user_image"
+            android:layout_toEndOf="@+id/fl_user_image">
+
+            <Button
+                android:id="@+id/bt_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="EDIT"
+                android:layout_marginTop="28dp"
+                android:textColor="#000"
+                tools:ignore="RtlCompat" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:layout_marginTop="28dp"
+                android:visibility="gone"
+                android:id="@+id/bt_save" />
+        </FrameLayout>
     </RelativeLayout>
 </ScrollView>

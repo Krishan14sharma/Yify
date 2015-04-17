@@ -1,10 +1,13 @@
 package mvp.dagger.yify.yify.ui.fragment;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -12,6 +15,7 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import mvp.dagger.yify.yify.R;
 import mvp.dagger.yify.yify.domain.interactors.UserProfileInteractorImp;
 import mvp.dagger.yify.yify.domain.presenter.UserProfilePresenter;
@@ -37,6 +41,10 @@ public class UserProfileFragment extends BaseFragment implements UserProfileView
     EditText mEdtUserDesc;
     @InjectView(R.id.img_user_image_edit)
     ImageView mImgUserImageEdit;
+    @InjectView(R.id.bt_edit)
+    Button mBtEdit;
+    @InjectView(R.id.bt_save)
+    Button mBtSave;
 
     public UserProfileFragment() {
     }
@@ -55,6 +63,20 @@ public class UserProfileFragment extends BaseFragment implements UserProfileView
         super.onViewCreated(view, savedInstanceState);
         presenter.getProfileData();
 
+    }
+
+    @OnClick(R.id.bt_save)
+    public void onSaveBtnClicked() {
+        String email = mEdtUserEmail.getText().toString().trim();
+        String name = mEdtUserName.getText().toString().trim();
+        String desc = mEdtUserDesc.getText().toString().trim();
+        presenter.updateProfileData(name, email, desc);
+    }
+
+
+    @OnClick(R.id.bt_edit)
+    public void onEditBtnClicked() {
+        presenter.onEditEvent();
     }
 
     @Override
@@ -91,12 +113,44 @@ public class UserProfileFragment extends BaseFragment implements UserProfileView
     public void setFieldsEditable() {
         mEdtUserEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         mEdtUserName.setInputType(InputType.TYPE_CLASS_TEXT);
-        mEdtUserDesc.setInputType(InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE);
+//        mEdtUserDesc.setInputType(InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE);
         mImgUserImageEdit.setVisibility(View.VISIBLE);
+//        mEdtUserEmail.setBackgroundResource(R.drawable.bg_edittext);
+//        mEdtUserName.setBackgroundResource(R.drawable.bg_edittext);
+//        mEdtUserDesc.setBackgroundResource(R.drawable.bg_edittext);
+
     }
 
     @Override
+    public void hideEditBtn() {
+        mBtEdit.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideSaveBtn() {
+        mBtSave.setVisibility(View.GONE);
+
+    }
+
+    @Override
+    public void showEditBtn() {
+        mBtEdit.setVisibility(View.VISIBLE);
+
+    }
+
+    @Override
+    public void showSaveBtn() {
+        mBtSave.setVisibility(View.VISIBLE);
+
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @Override
     public void setFieldsNonEditable() {
+//        mEdtUserEmail.setBackground(null);
+//        mEdtUserName.setBackground(null);
+//        mEdtUserDesc.setBackground(null);
+
         mEdtUserEmail.setInputType(InputType.TYPE_NULL);
         mEdtUserName.setInputType(InputType.TYPE_NULL);
         mEdtUserDesc.setInputType(InputType.TYPE_NULL);

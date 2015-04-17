@@ -55,7 +55,34 @@ public class UserProfileInteractorImp implements UserProfileInterator {
     }
 
     @Override
-    public void updateUserProfileData() {
-
+    public void updateUserProfileData(String name, String email, String desc, OnFetchProfileDataFinishListener listener) {
+//        String key = "d260ac8680e24780abb9a4c9e9f3255a";
+//        ApiClient.getApiClientWithStringConverter().getUserProfile(key, new CancelableCallback<String>(new Callback<String>() {
+//            @Override
+//            public void success(String data, Response response) {
+//                try {
+//                    JSONObject jsonObject = new JSONObject(data);
+//                    String status = jsonObject.getString("status");
+//                    if (status.equals("error")) {
+//                        Gson gson = new Gson();
+//                        ErrorWrapper errorObj = gson.fromJson(data, ErrorWrapper.class);
+//                        listener.onFailure(errorObj.getStatusMessage());
+//                    } else {
+//                        // Login successful use diff object to parse data and get the user id
+//                        UserProfileWrapper userProfileData = new Gson().fromJson(data, UserProfileWrapper.class);
+//                        listener.onSucess(userProfileData);
+//                    }
+//                } catch (JSONException e) {
+//                    listener.onFailure("Parsing failed");
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void failure(RetrofitError error) {
+//                listener.onFailure(error.getMessage());
+//            }
+//        }));
+//    }
     }
 }
