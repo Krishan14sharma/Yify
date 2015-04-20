@@ -19,4 +19,6 @@
     <string name="email_empty_error">Email cannot be empty</string>
     <string name="title_activity_user_profile">UserProfile</string>
     <string name="long_text">this is a  very long text so please stop reading this.If you are reading this then you are probably very smart.You will find the treasure on these cordinates 21* 34\' 54\'\' ,29*39\'56\'\'</string>
+    <string name="upcomingmov">Upcoming Movies</string>
+    <string name="movies">Movies</string>
 </resources>

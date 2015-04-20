@@ -18,16 +18,11 @@ import mvp.dagger.yify.yify.BaseApp;
 import mvp.dagger.yify.yify.BaseAppComponent;
 import mvp.dagger.yify.yify.R;
 import mvp.dagger.yify.yify.di.component.DaggerLoginComponent;
-import mvp.dagger.yify.yify.di.component.DaggerSignUpComponent;
 import mvp.dagger.yify.yify.di.component.LoginComponent;
-import mvp.dagger.yify.yify.di.component.SignUpComponent;
 import mvp.dagger.yify.yify.di.module.LoginModule;
-import mvp.dagger.yify.yify.di.module.MainModule;
-import mvp.dagger.yify.yify.di.module.SignUpModule;
 import mvp.dagger.yify.yify.domain.presenter.LoginPresenter;
-import mvp.dagger.yify.yify.domain.presenter.LoginPresenterImp;
-import mvp.dagger.yify.yify.ui.common.BaseFragment;
 import mvp.dagger.yify.yify.ui.activity.MainActivity;
+import mvp.dagger.yify.yify.ui.common.BaseFragment;
 import mvp.dagger.yify.yify.ui.view.LoginView;
 
 import static mvp.dagger.yify.yify.util.CommonUtil.showToast;

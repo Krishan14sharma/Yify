@@ -13,7 +13,7 @@ import retrofit.client.Response;
 /**
  * Created by krishan on 9/4/15.
  */
-public class MainInteractorImpl implements MainInteractor {
+public class MainInteractorReleasedImpl implements MainInteractor {
 
 
     CancelableCallback<MovieListWrapper> callback;

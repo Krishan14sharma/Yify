@@ -9,7 +9,10 @@ public interface MainPresenter {
      *
      * @param pageNum page Num of the movielist to be fetched
      */
+
     void fetchMovieData(int pageNum);
 
     void destroy();
+
+
 }

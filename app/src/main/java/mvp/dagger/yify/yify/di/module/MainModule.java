@@ -1,12 +1,15 @@
 package mvp.dagger.yify.yify.di.module;
 
+import javax.inject.Named;
+
 import dagger.Module;
 import dagger.Provides;
 import mvp.dagger.yify.yify.domain.interactors.MainInteractor;
-import mvp.dagger.yify.yify.domain.interactors.MainInteractorImpl;
-import mvp.dagger.yify.yify.domain.interactors.MockMainInteractorImpl;
+import mvp.dagger.yify.yify.domain.interactors.MainInteractorReleasedImpl;
+import mvp.dagger.yify.yify.domain.interactors.MainInteractorUpcomingImpl;
 import mvp.dagger.yify.yify.domain.presenter.MainPresenter;
 import mvp.dagger.yify.yify.domain.presenter.MainPresenterImpl;
+import mvp.dagger.yify.yify.model.MOVIE_TYPE;
 import mvp.dagger.yify.yify.ui.view.MainView;
 
 /**
@@ -15,12 +18,13 @@ import mvp.dagger.yify.yify.ui.view.MainView;
 @Module
 public class MainModule {
 
-    public MainModule(MainView mainView) {
+    public MainModule(MainView mainView,MOVIE_TYPE movie_type) {
         this.mainView = mainView;
     }
 
     MainView mainView;
 
+    MOVIE_TYPE movie_type;
     @Provides
     MainView provideMainView() {
         return mainView;
@@ -38,10 +42,14 @@ public class MainModule {
         return new MainPresenterImpl(mainView, mainInteractor);
     }
 
-    @Provides
-    public MainInteractor provideMainInteractor() {
-        return new MainInteractorImpl();
+    @Provides @Named("released")
+    public MainInteractor provideMainInteractorReleased() {
+        return new MainInteractorReleasedImpl();
     }
 
+    @Provides @Named("upcoming")
+    public MainInteractor provideMainInteractorUpcoming() {
+        return new MainInteractorUpcomingImpl();
+    }
 
 }
