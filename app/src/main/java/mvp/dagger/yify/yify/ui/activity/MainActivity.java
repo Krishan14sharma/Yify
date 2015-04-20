@@ -26,6 +26,7 @@ import mvp.dagger.yify.yify.domain.presenter.MainPresenter;
 import mvp.dagger.yify.yify.model.MovieListWrapper;
 import mvp.dagger.yify.yify.ui.common.BaseToolBarActivity;
 import mvp.dagger.yify.yify.ui.view.MainView;
+import mvp.dagger.yify.yify.util.CommonUtil;
 import retrofit.RetrofitError;
 
 
@@ -127,13 +128,10 @@ public class MainActivity extends BaseToolBarActivity {
         @Override
         public void hideLoading() {
             progressBar.setVisibility(View.GONE);
-
         }
 
         @Override
-        public void showError(RetrofitError error) {
-            Toast.makeText(getActivity().getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
-        }
+        public void showError(RetrofitError error) { CommonUtil.showToast("error"); }
 
         @Override
         public void onHideError() {

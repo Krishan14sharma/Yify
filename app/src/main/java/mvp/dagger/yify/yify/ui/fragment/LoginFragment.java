@@ -58,7 +58,6 @@ public class LoginFragment extends BaseFragment implements LoginView {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.inject(this, rootView);
-        setPasswordError();
         setUpDagger();
         return rootView;
     }
@@ -82,6 +81,7 @@ public class LoginFragment extends BaseFragment implements LoginView {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.reset(this);
+        presenter.destroy();
     }
 
     @Override

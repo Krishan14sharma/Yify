@@ -1,0 +1,8 @@
+***Improve the Ui for both the login page as well as the sign up page.
+
+***Create a edit icon/text on the toolbar and integrate the update webservice inside the user profile screen.
+
+***Could use https://github.com/d-max/spots-dialog this dialog lib   or this one https://github.com/zzz40500/android-shapeLoadingView
+
+***IMplement the lazy loading inside the homescreen.
+

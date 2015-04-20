@@ -9,4 +9,6 @@ public interface SignUpInteractor {
     boolean validateFields(String userName, String email, String password, OnSignUpFinishListner onSignUpFinishListner);
 
     void registerUser(String userName, String email, String password, OnSignUpFinishListner onSignUpFinishListner);
+    void destroy();
+
 }

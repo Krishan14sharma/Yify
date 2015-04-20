@@ -13,4 +13,5 @@ public interface BaseView {
     void showError(RetrofitError error);
 
     void onHideError();
+
 }

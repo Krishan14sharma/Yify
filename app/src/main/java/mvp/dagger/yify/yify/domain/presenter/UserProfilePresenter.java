@@ -11,4 +11,6 @@ public interface UserProfilePresenter {
     void updateProfileData(String name, String email, String discription);
 
     void onEditEvent();
+
+    void destroy();
 }

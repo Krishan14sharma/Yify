@@ -28,6 +28,8 @@ import static mvp.dagger.yify.yify.util.CommonUtil.showToast;
 public class SignUpInteractorImp implements SignUpInteractor {
 
 
+    private CancelableCallback<String> mCallback;
+
     @Override
     public boolean validateFields(String userName, String email, String password, OnSignUpFinishListner onSignUpFinishListner) {
         if (TextUtils.isEmpty(userName))
@@ -50,7 +52,7 @@ public class SignUpInteractorImp implements SignUpInteractor {
     @Override
     public void registerUser(String userName, String email, String password, final OnSignUpFinishListner onSignUpFinishListner) {
         ApiClient.getApiClientWithStringConverter().registerUser(userName, email, password,
-                CommonUtil.getAppKey(), new CancelableCallback<String>(new Callback<String>() {
+                CommonUtil.getAppKey(), mCallback = new CancelableCallback<String>(new Callback<String>() {
                     @Override
                     public void success(String signUpResponse, Response response) {
                         try {
@@ -78,5 +80,10 @@ public class SignUpInteractorImp implements SignUpInteractor {
                         onSignUpFinishListner.onFailure("Unable to connect");
                     }
                 }));
+    }
+
+    @Override
+    public void destroy() {
+        CommonUtil.releaseCallback(mCallback);
     }
 }

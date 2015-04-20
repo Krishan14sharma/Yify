@@ -5,4 +5,6 @@ package mvp.dagger.yify.yify.domain.presenter;
  */
 public interface SignUpPresenter {
     void signUpUser(String username, String pass, String emails);
+
+    void destroy();
 }

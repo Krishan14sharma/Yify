@@ -8,13 +8,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import mvp.dagger.yify.yify.api.ApiClient;
+import mvp.dagger.yify.yify.api.util.CancelableCallback;
 import mvp.dagger.yify.yify.model.error.ErrorWrapper;
 import mvp.dagger.yify.yify.model.login.login.LoginSuccessWrapper;
 import mvp.dagger.yify.yify.domain.presenter.OnLoginFinishListner;
+import mvp.dagger.yify.yify.util.CommonUtil;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+import static mvp.dagger.yify.yify.util.CommonUtil.*;
 import static mvp.dagger.yify.yify.util.CommonUtil.getAppKey;
 import static mvp.dagger.yify.yify.util.CommonUtil.showToast;
 
@@ -23,6 +26,7 @@ import static mvp.dagger.yify.yify.util.CommonUtil.showToast;
  */
 public class LoginInteractorImp implements LoginInteractor {
     OnLoginFinishListner listner;
+    private CancelableCallback<String> mCallback;
 
 
     @Override
@@ -41,7 +45,7 @@ public class LoginInteractorImp implements LoginInteractor {
 
     @Override
     public void loginUser(String username, String pass, final OnLoginFinishListner listner) {
-        ApiClient.getApiClientWithStringConverter().LoginUser(username, pass, getAppKey(), new Callback<String>() {
+        ApiClient.getApiClientWithStringConverter().LoginUser(username, pass, getAppKey(), mCallback = new CancelableCallback<>(new Callback<String>() {
             @Override
             public void success(String loginResponse, Response response) {
                 try {
@@ -68,6 +72,15 @@ public class LoginInteractorImp implements LoginInteractor {
             public void failure(RetrofitError error) {
                 listner.onFailure(error.getMessage());
             }
-        });
+        }));
+    }
+
+    @Override
+    public void destroy() {
+//        if (mCallback != null) {
+//            mCallback.cancel();
+//            mCallback = null;
+//        }
+        releaseCallback(mCallback);
     }
 }

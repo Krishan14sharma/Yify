@@ -14,6 +14,8 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.io.InputStream;
 
+import mvp.dagger.yify.yify.api.util.CancelableCallback;
+
 import static mvp.dagger.yify.yify.BaseApp.getContext;
 
 
@@ -124,6 +126,13 @@ public class CommonUtil {
             return false;
         } else {
             return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        }
+    }
+
+    public static void releaseCallback(CancelableCallback<? extends Object> callback) {
+        if (callback != null) {
+            callback.cancel();
+            callback = null;
         }
     }
 }

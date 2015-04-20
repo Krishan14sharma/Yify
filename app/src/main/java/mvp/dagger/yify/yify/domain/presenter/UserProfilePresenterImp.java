@@ -1,4 +1,4 @@
- package mvp.dagger.yify.yify.domain.presenter;
+package mvp.dagger.yify.yify.domain.presenter;
 
 import mvp.dagger.yify.yify.domain.interactors.UserProfileInterator;
 import mvp.dagger.yify.yify.model.user_profile.UserProfileWrapper;
@@ -37,6 +37,11 @@ public class UserProfilePresenterImp implements UserProfilePresenter, OnFetchPro
     @Override
     public void onEditEvent() {
         view.setFieldsEditable();
+    }
+
+    @Override
+    public void destroy() {
+        interator.destroy();
     }
 
     @Override

@@ -85,6 +85,7 @@ public class UserProfileFragment extends BaseFragment implements UserProfileView
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.reset(this);
+        presenter.destroy();
     }
 
     @Override

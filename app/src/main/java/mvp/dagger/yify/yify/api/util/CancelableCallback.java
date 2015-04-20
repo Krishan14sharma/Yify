@@ -19,7 +19,6 @@ public class CancelableCallback<T> implements Callback<T> {
         canceled = true;
     }
 
-
     @Override
     public void success(T t, Response response) {
         if (!canceled) {

@@ -37,7 +37,6 @@ public class BaseFragment extends Fragment implements BaseView {
         dialog.setCancelable(false);
     }
 
-    //todo push both the showLoading and hide loading into the base fragment or activity
     @Override
     public void showLoading() {
         dialog.show();

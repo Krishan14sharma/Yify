@@ -86,6 +86,7 @@ public class SignUpFragment extends BaseFragment implements SignupView {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.reset(this);
+        presenter.destroy();
     }
 
     @OnClick(R.id.bt_register)

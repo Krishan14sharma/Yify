@@ -9,12 +9,13 @@ import mvp.dagger.yify.yify.api.ApiClient;
 import mvp.dagger.yify.yify.api.util.CancelableCallback;
 import mvp.dagger.yify.yify.domain.presenter.OnFetchProfileDataFinishListener;
 import mvp.dagger.yify.yify.model.error.ErrorWrapper;
-import mvp.dagger.yify.yify.model.login.login.LoginSuccessWrapper;
 import mvp.dagger.yify.yify.model.user_profile.UserProfileWrapper;
+import mvp.dagger.yify.yify.util.CommonUtil;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+import static mvp.dagger.yify.yify.util.CommonUtil.*;
 import static mvp.dagger.yify.yify.util.CommonUtil.showToast;
 
 /**
@@ -22,11 +23,13 @@ import static mvp.dagger.yify.yify.util.CommonUtil.showToast;
  */
 public class UserProfileInteractorImp implements UserProfileInterator {
 
+    private CancelableCallback<String> mGetDataCallback;
+
     // todo we need a way to avoid writing these code
     @Override
     public void getUserProfileData(final OnFetchProfileDataFinishListener listener) {
         String key = "d260ac8680e24780abb9a4c9e9f3255a";//TODO Get these from the preferences
-        ApiClient.getApiClientWithStringConverter().getUserProfile(key, new CancelableCallback<String>(new Callback<String>() {
+        ApiClient.getApiClientWithStringConverter().getUserProfile(key, mGetDataCallback = new CancelableCallback<String>(new Callback<String>() {
             @Override
             public void success(String data, Response response) {
 
@@ -86,5 +89,10 @@ public class UserProfileInteractorImp implements UserProfileInterator {
 //            }
 //        }));
 //    }
+    }
+
+    @Override
+    public void destroy() {
+        releaseCallback(mGetDataCallback);
     }
 }

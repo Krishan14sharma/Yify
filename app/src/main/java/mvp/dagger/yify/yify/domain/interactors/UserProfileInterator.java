@@ -9,4 +9,7 @@ public interface UserProfileInterator {
     void getUserProfileData(OnFetchProfileDataFinishListener listener);
 
     void updateUserProfileData(String name, String email, String desc, OnFetchProfileDataFinishListener listenerInter);
+
+    void destroy();
+
 }

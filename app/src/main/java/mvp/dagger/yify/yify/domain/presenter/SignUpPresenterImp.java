@@ -29,6 +29,11 @@ public class SignUpPresenterImp implements SignUpPresenter, OnSignUpFinishListne
     }
 
     @Override
+    public void destroy() {
+        signUpInteractor.destroy();
+    }
+
+    @Override
     public void onSuccess() {
         signupView.hideLoading();
         signupView.showSignUpSuccessMsg();

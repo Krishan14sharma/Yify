@@ -28,6 +28,11 @@ public class LoginPresenterImp implements LoginPresenter, OnLoginFinishListner {
     }
 
     @Override
+    public void destroy() {
+        interactor.destroy();
+    }
+
+    @Override
     public void onSuccess() {
         // todo save data to shared prefs etc
         view.showLoginSuccessMsg();

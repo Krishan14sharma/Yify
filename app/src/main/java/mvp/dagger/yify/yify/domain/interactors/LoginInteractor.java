@@ -9,4 +9,6 @@ public interface LoginInteractor {
     boolean validateFields(String username, String pass, OnLoginFinishListner listner);
 
     void loginUser(String username, String pass, OnLoginFinishListner listner);
+
+    void destroy();
 }
