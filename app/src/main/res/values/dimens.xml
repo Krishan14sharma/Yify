@@ -12,4 +12,10 @@
     <dimen name="drawer_movie_checkin_poster_height">90dp</dimen>
     <dimen name="drawer_account_avatar_width">56dp</dimen>
     <dimen name="drawer_account_avatar_height">56dp</dimen>
+    <dimen name="grid1_image_height">180dp</dimen>
+    <dimen name="card_corner_radius">4dp</dimen>
+    <dimen name="grid1_height_minus_card_corner">172dp</dimen>
+    <dimen name="grid2_image_height">90dp</dimen>
+    <dimen name="grid2_height_minus_card_corner">82dp</dimen>
+    <dimen name="item_spacing">8dp</dimen>
 </resources>

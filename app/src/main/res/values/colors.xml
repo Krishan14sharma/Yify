@@ -26,5 +26,7 @@
     <color name="float_button_ripple">#2E7D32</color>
 
     <color name="card_color_pressed">#eaeaea</color>
+    <color name="bg_color">#f2f2f2</color>
+    <color name="card_color">#ffffff</color>
 
 </resources>

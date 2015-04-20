@@ -26,7 +26,6 @@ import mvp.dagger.yify.yify.domain.presenter.MainPresenter;
 import mvp.dagger.yify.yify.model.MovieListWrapper;
 import mvp.dagger.yify.yify.ui.common.BaseToolBarActivity;
 import mvp.dagger.yify.yify.ui.view.MainView;
-import mvp.dagger.yify.yify.util.CommonUtil;
 import retrofit.RetrofitError;
 
 
@@ -118,6 +117,7 @@ public class MainActivity extends BaseToolBarActivity {
         @Override
         public void showData(MovieListWrapper movieListWrapper) {
             Toast.makeText(getActivity().getApplicationContext(), movieListWrapper.getData().getMovies().size() + "", Toast.LENGTH_SHORT).show();
+            mRecyclerView.setAdapter(new MainActivityAdapter(movieListWrapper));
         }
 
         @Override

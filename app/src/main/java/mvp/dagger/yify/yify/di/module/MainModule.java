@@ -4,6 +4,7 @@ import dagger.Module;
 import dagger.Provides;
 import mvp.dagger.yify.yify.domain.interactors.MainInteractor;
 import mvp.dagger.yify.yify.domain.interactors.MainInteractorImpl;
+import mvp.dagger.yify.yify.domain.interactors.MockMainInteractorImpl;
 import mvp.dagger.yify.yify.domain.presenter.MainPresenter;
 import mvp.dagger.yify.yify.domain.presenter.MainPresenterImpl;
 import mvp.dagger.yify.yify.ui.view.MainView;
@@ -25,6 +26,12 @@ public class MainModule {
         return mainView;
     }
 
+    /**
+     * here main view are dependencies of this method which are also provided by this module
+     * @param mainView
+     * @param mainInteractor
+     * @return
+     */
     @Provides
     public MainPresenter provideMainPresenter(MainView mainView,MainInteractor mainInteractor) {
         return new MainPresenterImpl(mainView,mainInteractor);
@@ -32,7 +39,7 @@ public class MainModule {
 
     @Provides
     public MainInteractor provideMainInteractor(){
-        return new MainInteractorImpl();
+        return new MockMainInteractorImpl();
     }
 
 
