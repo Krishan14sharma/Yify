@@ -28,18 +28,19 @@ public class MainModule {
 
     /**
      * here main view are dependencies of this method which are also provided by this module
+     *
      * @param mainView
      * @param mainInteractor
      * @return
      */
     @Provides
-    public MainPresenter provideMainPresenter(MainView mainView,MainInteractor mainInteractor) {
-        return new MainPresenterImpl(mainView,mainInteractor);
+    public MainPresenter provideMainPresenter(MainView mainView, MainInteractor mainInteractor) {
+        return new MainPresenterImpl(mainView, mainInteractor);
     }
 
     @Provides
-    public MainInteractor provideMainInteractor(){
-        return new MockMainInteractorImpl();
+    public MainInteractor provideMainInteractor() {
+        return new MainInteractorImpl();
     }
 
 

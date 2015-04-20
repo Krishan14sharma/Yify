@@ -16,7 +16,7 @@ public class ErrorWrapper {
     private String statusMessage;
     @SerializedName("@meta")
     @Expose
-    private mvp.dagger.yify.yify.model.Meta Meta;
+    private Meta Meta;
 
     /**
      * @return The status
@@ -49,14 +49,14 @@ public class ErrorWrapper {
     /**
      * @return The Meta
      */
-    public mvp.dagger.yify.yify.model.Meta getMeta() {
+    public Meta getMeta() {
         return Meta;
     }
 
     /**
      * @param Meta The @meta
      */
-    public void setMeta(mvp.dagger.yify.yify.model.Meta Meta) {
+    public void setMeta(Meta Meta) {
         this.Meta = Meta;
     }
 

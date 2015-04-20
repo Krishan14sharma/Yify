@@ -1,7 +1,7 @@
 package mvp.dagger.yify.yify.domain.presenter;
 
 import mvp.dagger.yify.yify.domain.interactors.MainInteractor;
-import mvp.dagger.yify.yify.model.MovieListWrapper;
+import mvp.dagger.yify.yify.model.movie_list.MovieListWrapper;
 import mvp.dagger.yify.yify.ui.view.MainView;
 import retrofit.RetrofitError;
 
@@ -19,9 +19,9 @@ public class MainPresenterImpl implements MainPresenter, FinishListner {
     MainInteractor mainInteractor;
 
     @Override
-    public void onViewload() {
+    public void fetchMovieData(int pageNum) {
         mainView.showLoading();
-        mainInteractor.fetchData(this);
+        mainInteractor.fetchData(pageNum, this);
     }
 
     @Override

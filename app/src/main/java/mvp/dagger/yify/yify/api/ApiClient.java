@@ -1,13 +1,9 @@
 package mvp.dagger.yify.yify.api;
 
-import java.util.List;
 import java.util.Map;
 
-import mvp.dagger.yify.yify.api.util.CancelableCallback;
 import mvp.dagger.yify.yify.api.util.StringConverter;
-import mvp.dagger.yify.yify.model.Movie;
-import mvp.dagger.yify.yify.model.MovieListWrapper;
-import mvp.dagger.yify.yify.model.user_profile.UserProfileWrapper;
+import mvp.dagger.yify.yify.model.movie_list.MovieListWrapper;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.http.Field;
@@ -55,8 +51,8 @@ public class ApiClient {
                 Callback<MovieListWrapper> callback
         );
 
-        @GET("/upcoming.json")
-        void getStreams(@Query("limit") int limit, @Query("offset") int offset, Callback<List<Movie>> callback);
+//        @GET("/upcoming.json")
+//        void getStreams(@Query("limit") int limit, @Query("offset") int offset, Callback<List<Movie>> callback);
 
         @FormUrlEncoded
         @POST("/user_register.json.json")
