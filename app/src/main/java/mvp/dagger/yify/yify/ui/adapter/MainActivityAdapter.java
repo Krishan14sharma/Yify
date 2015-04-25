@@ -1,6 +1,6 @@
 package mvp.dagger.yify.yify.ui.adapter;
 
-import android.support.v4.app.Fragment;
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,41 +14,30 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import mvp.dagger.yify.yify.BaseApp;
 import mvp.dagger.yify.yify.R;
-import mvp.dagger.yify.yify.model.movie_list.MovieListWrapper;
+import mvp.dagger.yify.yify.model.MovieListWrapper;
 
 
 /**
  * Created by krishan on 15/4/15.
  */
 public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapter.MainActivityViewHolder> {
-    public static final int ITEM_TYPE_SMALL = 1;
-    public static final int ITEM_TYPE_LARGE = 2;
-    public static final int ITEM_TYPE_PROGRESS_BAR = 3;
 
+    private EOLReached reached;
 
-    private DataFetchEvent event;
-
-    public MainActivityAdapter(Fragment fragment, MovieListWrapper movieListWrapper) {
+    public MainActivityAdapter(Activity activity, MovieListWrapper movieListWrapper) {
         this.movieListWrapper = movieListWrapper;
-        event = (DataFetchEvent) fragment;
+        this.reached = (EOLReached) activity;
     }
 
     private MovieListWrapper movieListWrapper;
 
     @Override
-    public MainActivityViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public MainActivityViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView;
-        switch (viewType) {
-            case ITEM_TYPE_SMALL:
+        switch (i) {
+            case 0:
                 itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.home_spannable_grid1, viewGroup, false);
                 return new MainActivityViewHolder(itemView);
-            case ITEM_TYPE_LARGE:
-                itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.home_spannable_grid2, viewGroup, false);
-                return new MainActivityViewHolder(itemView);
-//            case ITEM_TYPE_PROGRESS_BAR:
-//                itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.include_progress_bar, viewGroup, false);
-//                return new MainActivityViewHolder(itemView);
-
             default:
                 itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.home_spannable_grid2, viewGroup, false);
                 return new MainActivityViewHolder(itemView);
@@ -56,16 +45,11 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
         }
     }
 
-    public void concatContent(MovieListWrapper wrapper) {
-        movieListWrapper.getData().getMovies().addAll(wrapper.getData().getMovies());
-        this.notifyDataSetChanged();
-    }
-
     @Override
     public int getItemViewType(int position) {
-//        if (position == getItemCount() - 1)
-//            return ITEM_TYPE_PROGRESS_BAR;
-
+        if (position == getItemCount() - 1) {
+            //todo call through interface or event bus to fetch more items from the web service
+        }
         return position % 2;
     }
 
@@ -73,9 +57,6 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
     public void onBindViewHolder(MainActivityViewHolder mainActivityViewHolder, int i) {
         Picasso.with(BaseApp.getContext()).load(movieListWrapper.getData().getMovies().get(i).getMediumCoverImage()).into(mainActivityViewHolder.mImageView);
         mainActivityViewHolder.mTextView.setText(movieListWrapper.getData().getMovies().get(i).getTitle() + "");
-        if (i == getItemCount() - 1) {
-            event.endOfListReachedEvent();
-        }
     }
 
     @Override
@@ -95,10 +76,13 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
             super(view);
             ButterKnife.inject(this, view);
         }
-
     }
 
-    public interface DataFetchEvent {
-        void endOfListReachedEvent();
+    public void updateData(MovieListWrapper wrapper) {
+        this.movieListWrapper.getData().getMovies().addAll(wrapper.getData().getMovies());
+    }
+
+    public interface EOLReached {
+        void loadMoreData();
     }
 }

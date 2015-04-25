@@ -7,7 +7,7 @@ import mvp.dagger.yify.yify.domain.presenter.FinishListner;
  */
 public interface MainInteractor {
 
-    void fetchData(int pageNum, FinishListner finishListner);
+    void fetchData(FinishListner finishListner);
 
     void destroy();
 

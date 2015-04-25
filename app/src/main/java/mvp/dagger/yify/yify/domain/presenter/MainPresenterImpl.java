@@ -1,5 +1,7 @@
 package mvp.dagger.yify.yify.domain.presenter;
 
+import android.support.annotation.Nullable;
+
 import mvp.dagger.yify.yify.domain.interactors.MainInteractor;
 import mvp.dagger.yify.yify.model.movie_list.MovieListWrapper;
 import mvp.dagger.yify.yify.ui.view.MainView;
@@ -37,8 +39,8 @@ public class MainPresenterImpl implements MainPresenter, FinishListner {
     }
 
     @Override
-    public void onFailure(RetrofitError error) {
-        error.printStackTrace();
+    public void onFailure(@Nullable RetrofitError error) {
+        if (error != null) error.printStackTrace();
         mainView.hideLoading();
         mainView.showError(error);
     }

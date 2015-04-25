@@ -1,11 +1,11 @@
 package mvp.dagger.yify.yify.domain.presenter;
 
 import mvp.dagger.yify.yify.domain.interactors.LoginInteractor;
-import mvp.dagger.yify.yify.domain.interactors.LoginInteractorImp;
 import mvp.dagger.yify.yify.ui.view.LoginView;
 
 /**
  * Created by vardan sharma  on 10-04-2015.
+ *
  */
 public class LoginPresenterImp implements LoginPresenter, OnLoginFinishListner {
     LoginView view;

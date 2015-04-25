@@ -81,12 +81,12 @@ public class LoginFragment extends BaseFragment implements LoginView {
 
     @Override
     public void setUsernameError() {
-        mEtUserName.setError("Username not correct");
+        mEtUserName.setError("Username is invalid");
     }
 
     @Override
     public void setPasswordError() {
-        mEtUserName.setError("Passwors is invalid");
+        mEtUserName.setError("Password is invalid");
     }
 
     @Override
@@ -96,7 +96,7 @@ public class LoginFragment extends BaseFragment implements LoginView {
 
     @Override
     public void showLoginSuccessMsg() {
-        showToast("Login success");
+        showToast("Login successful");
     }
 
     @Override
@@ -116,7 +116,6 @@ public class LoginFragment extends BaseFragment implements LoginView {
 
     @OnClick(R.id.bt_login)
     public void loginClicked() {
-        // todo validate fields that too using the method inside presenter
         String email = mEtUserName.getText().toString().trim();
         String pass = mEtPasswprd.getText().toString().trim();
         presenter.loginUser(email, pass);

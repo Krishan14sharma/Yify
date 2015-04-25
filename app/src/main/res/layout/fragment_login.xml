@@ -2,22 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2F4159"
     android:orientation="vertical"
     tools:context="com.example.hplaptop.Yify.controller.Activity.LoginActivity">
 
     <include layout="@layout/include_progress_bar" />
-
-    <mvp.dagger.yify.yify.views.QuickFontTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="Skip login"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:layout_marginTop="29dp"
-        android:layout_below="@+id/progressBar"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
     <ScrollView
         android:id="@+id/login_container"
@@ -88,7 +76,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="56dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@color/accent_material_light"
+                android:background="@drawable/bg_login_btn"
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
                 android:text="LOGIN" />
@@ -111,6 +99,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Create an account"
+        android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/progressBar"
         android:layout_toEndOf="@+id/progressBar" />
