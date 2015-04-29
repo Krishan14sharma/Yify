@@ -11,16 +11,15 @@ import mvp.dagger.yify.yify.BaseApp;
 import mvp.dagger.yify.yify.R;
 import mvp.dagger.yify.yify.api.ApiClient;
 import mvp.dagger.yify.yify.api.util.CancelableCallback;
+import mvp.dagger.yify.yify.domain.presenter.OnSignUpFinishListner;
 import mvp.dagger.yify.yify.model.error.ErrorWrapper;
 import mvp.dagger.yify.yify.model.register.RegisterWrapper;
-import mvp.dagger.yify.yify.domain.presenter.OnSignUpFinishListner;
 import mvp.dagger.yify.yify.util.CommonUtil;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 import static mvp.dagger.yify.yify.util.CommonUtil.isValidEmail;
-import static mvp.dagger.yify.yify.util.CommonUtil.showToast;
 
 /**
  * Created by Vardan sharma on 10-04-2015.

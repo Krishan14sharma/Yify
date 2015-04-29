@@ -1,12 +1,9 @@
 package mvp.dagger.yify.yify.di.module;
 
-import javax.inject.Named;
-
 import dagger.Module;
 import dagger.Provides;
 import mvp.dagger.yify.yify.domain.interactors.MainInteractor;
 import mvp.dagger.yify.yify.domain.interactors.MainInteractorReleasedImpl;
-import mvp.dagger.yify.yify.domain.interactors.MainInteractorUpcomingImpl;
 import mvp.dagger.yify.yify.domain.presenter.MainPresenter;
 import mvp.dagger.yify.yify.domain.presenter.MainPresenterImpl;
 import mvp.dagger.yify.yify.model.MOVIE_TYPE;
@@ -42,14 +39,16 @@ public class MainModule {
         return new MainPresenterImpl(mainView, mainInteractor);
     }
 
-    @Provides @Named("released")
+
+    @Provides
     public MainInteractor provideMainInteractorReleased() {
         return new MainInteractorReleasedImpl();
     }
+//todo there is some problem in the
+//    @Provides @Named("upcoming")
+//    public MainInteractor provideMainInteractorUpcoming() {
+//        return new MainInteractorUpcomingImpl();
+//    }
 
-    @Provides @Named("upcoming")
-    public MainInteractor provideMainInteractorUpcoming() {
-        return new MainInteractorUpcomingImpl();
-    }
 
 }
