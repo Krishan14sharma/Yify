@@ -8,7 +8,10 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import javax.inject.Inject;
 
@@ -23,9 +26,11 @@ import mvp.dagger.yify.yify.di.module.MainModule;
 import mvp.dagger.yify.yify.domain.presenter.MainPresenter;
 import mvp.dagger.yify.yify.model.MOVIE_TYPE;
 import mvp.dagger.yify.yify.model.movie_list.MovieListWrapper;
+import mvp.dagger.yify.yify.ui.activity.MainActivity;
 import mvp.dagger.yify.yify.ui.adapter.MainActivityAdapter;
 import mvp.dagger.yify.yify.ui.view.MainView;
 import mvp.dagger.yify.yify.util.SpacesItemDecoration;
+import mvp.dagger.yify.yify.views.HidingScrollListener;
 import retrofit.RetrofitError;
 import timber.log.Timber;
 
@@ -46,20 +51,17 @@ public abstract class BaseMovieListFragment extends Fragment implements MainView
     RecyclerView mRecyclerView;
     @InjectView(R.id.horizontal_bar)
     ProgressBar mHorizontalBar;
+    @InjectView(R.id.container)
+    RelativeLayout mContainer;
     private MainActivityAdapter mMovieAdapter;
     MOVIE_TYPE type;
+    float toolbarHeight;
+    float toolbarContainerHeight;
 
     public BaseMovieListFragment() {
 
     }
 
-    public MOVIE_TYPE getType() {
-        return type;
-    }
-
-    public void setType(MOVIE_TYPE type) {
-        this.type = type;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -70,7 +72,17 @@ public abstract class BaseMovieListFragment extends Fragment implements MainView
         mMovieAdapter = new MainActivityAdapter(this, new MovieListWrapper());
         mRecyclerView.setAdapter(mMovieAdapter);
         mRecyclerView.addItemDecoration(new SpacesItemDecoration(getResources().getDimensionPixelSize(R.dimen.item_spacing)));
+
+
         return rootView;
+    }
+
+    public MOVIE_TYPE getType() {
+        return type;
+    }
+
+    public void setType(MOVIE_TYPE type) {
+        this.type = type;
     }
 
     private void setUpDagger() {
@@ -86,12 +98,35 @@ public abstract class BaseMovieListFragment extends Fragment implements MainView
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         presenter.fetchInitialData(getType());
+        toolbarHeight = ((MainActivity) getActivity()).getToolbarSizeInpixels();
+        toolbarContainerHeight = (int) ((MainActivity) getActivity()).getToolbarContainerHeight();
+
+        mRecyclerView.setOnScrollListener(new HidingScrollListener(getActivity()) {
+            @Override
+            public void onMoved(int distance) {
+                ((MainActivity) getActivity()).getToolbarContainer().setTranslationY(-distance);
+            }
+
+            @Override
+            public void onShow() {
+                ((MainActivity) getActivity()).getToolbarContainer().animate()
+                        .translationY(0)
+                        .setInterpolator(new DecelerateInterpolator(2)).start();
+            }
+
+            @Override
+            public void onHide() {
+                ((MainActivity) getActivity()).getToolbarContainer().animate().
+                        translationY(-toolbarHeight).
+                        setInterpolator(new AccelerateInterpolator(2)).start();
+            }
+        });
     }
 
     @Override
     public void showData(MovieListWrapper movieListWrapper) {
         showToast(movieListWrapper.getData().getMovies().size() + "");
-            mMovieAdapter.concatContent(movieListWrapper);
+        mMovieAdapter.concatContent(movieListWrapper);
 
     }
 

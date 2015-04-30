@@ -13,6 +13,7 @@ import mvp.dagger.yify.yify.BaseApp;
 import mvp.dagger.yify.yify.BaseAppComponent;
 import mvp.dagger.yify.yify.BuildConfig;
 import mvp.dagger.yify.yify.R;
+import mvp.dagger.yify.yify.util.CommonUtil;
 
 /**
  * Created by Krishan on 17/12/14.
@@ -80,6 +81,14 @@ public class BaseToolBarActivity extends ActionBarActivity {
 //            finish();
 //        }
 //    }
+
+    public void translateToolbarInYAxis(float dy) {
+        mToolbar.setTranslationY(dy);
+    }
+
+    public int getToolbarSizeInpixels() {
+        return (int) CommonUtil.convertDpToPixel(56);
+    }
 
     public BaseAppComponent getBaseComponent() {
         return (BaseApp.getContext()).getComponent();
