@@ -1,9 +1,6 @@
 package mvp.dagger.yify.yify.domain.presenter;
 
-import javax.inject.Inject;
-
 import mvp.dagger.yify.yify.domain.interactors.SignUpInteractor;
-import mvp.dagger.yify.yify.domain.interactors.SignUpInteractorImp;
 import mvp.dagger.yify.yify.ui.view.SignupView;
 
 /**

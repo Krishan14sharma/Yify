@@ -1,16 +1,18 @@
 package mvp.dagger.yify.yify.domain.presenter;
 
+import mvp.dagger.yify.yify.model.MOVIE_TYPE;
+
 /**
  * Created by krishan on 9/4/15.
  */
 public interface MainPresenter {
     /**
      * Fetches the movie data from the server
-     *
-     * @param pageNum page Num of the movielist to be fetched
      */
 
-    void fetchMovieData(int pageNum);
+    void fetchMoreData();
+
+    void fetchInitialData(MOVIE_TYPE type);
 
     void destroy();
 

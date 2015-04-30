@@ -8,4 +8,9 @@ import mvp.dagger.yify.yify.ui.common.BaseView;
  */
 public interface MainView extends BaseView {
     void showData(MovieListWrapper movieListWrapper);
+
+    void showLazyLoading();
+
+    void hideLazyLoading();
+
 }

@@ -57,7 +57,10 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
     }
 
     public void concatContent(MovieListWrapper wrapper) {
-        movieListWrapper.getData().getMovies().addAll(wrapper.getData().getMovies());
+        if (movieListWrapper.getData() != null)
+            movieListWrapper.getData().getMovies().addAll(wrapper.getData().getMovies());
+        else
+            movieListWrapper = wrapper;
         this.notifyDataSetChanged();
     }
 
@@ -80,7 +83,8 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
 
     @Override
     public int getItemCount() {
-        return movieListWrapper.getData().getMovies().size();
+        return (movieListWrapper.getData() == null) ? 0 :
+                movieListWrapper.getData().getMovies().size();
     }
 
 

@@ -1,14 +1,15 @@
 package mvp.dagger.yify.yify.domain.interactors;
 
 import mvp.dagger.yify.yify.domain.presenter.FinishListner;
+import mvp.dagger.yify.yify.model.MOVIE_TYPE;
 
 /**
  * Created by krishan on 20/4/15.
  */
-public class MainInteractorUpcomingImpl implements MainInteractor {
+public class MainInteractorUpcomingImpl implements FetchMovieListInteractor {
 
     @Override
-    public void fetchData(int pageNum, FinishListner finishListner) {
+    public void fetchData(int pageNum, MOVIE_TYPE mMovieType, FinishListner finishListner) {
 
     }
 

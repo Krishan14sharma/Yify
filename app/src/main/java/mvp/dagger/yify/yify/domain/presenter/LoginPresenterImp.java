@@ -18,7 +18,7 @@ public class LoginPresenterImp implements LoginPresenter, OnLoginFinishListner {
 
 
     @Override
-    public void loginUser(String email, String pass) {
+    public void loginBtnClicked(String email, String pass) {
         view.showLoading();
         view.disableLoginBtn();
         if (interactor.validateFields(email, pass, this)) {

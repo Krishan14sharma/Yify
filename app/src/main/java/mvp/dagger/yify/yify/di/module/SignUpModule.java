@@ -4,7 +4,6 @@ import dagger.Module;
 import dagger.Provides;
 import mvp.dagger.yify.yify.domain.interactors.SignUpInteractor;
 import mvp.dagger.yify.yify.domain.interactors.SignUpInteractorImp;
-import mvp.dagger.yify.yify.domain.presenter.OnSignUpFinishListner;
 import mvp.dagger.yify.yify.domain.presenter.SignUpPresenter;
 import mvp.dagger.yify.yify.domain.presenter.SignUpPresenterImp;
 import mvp.dagger.yify.yify.ui.view.SignupView;

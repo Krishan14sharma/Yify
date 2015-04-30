@@ -118,6 +118,6 @@ public class LoginFragment extends BaseFragment implements LoginView {
     public void loginClicked() {
         String email = mEtUserName.getText().toString().trim();
         String pass = mEtPasswprd.getText().toString().trim();
-        presenter.loginUser(email, pass);
+        presenter.loginBtnClicked(email, pass);
     }
 }
