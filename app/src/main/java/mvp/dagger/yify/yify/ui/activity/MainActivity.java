@@ -20,7 +20,12 @@ import mvp.dagger.yify.yify.ui.common.BaseToolBarActivity;
 import mvp.dagger.yify.yify.ui.fragment.ActionMovieListFragment;
 import mvp.dagger.yify.yify.ui.fragment.AdventureMovieListFragment;
 import mvp.dagger.yify.yify.ui.fragment.AllMovieListFragment;
+import mvp.dagger.yify.yify.ui.fragment.AnimationMovieListFragment;
+import mvp.dagger.yify.yify.ui.fragment.ComedyMovieListFragment;
+import mvp.dagger.yify.yify.ui.fragment.HorrorMovieListFragment;
 import mvp.dagger.yify.yify.ui.fragment.RomanceMovielistFragment;
+import mvp.dagger.yify.yify.ui.fragment.SciFiMovieListFragment;
+import mvp.dagger.yify.yify.ui.fragment.ThrillerMovieListFragment;
 import mvp.dagger.yify.yify.util.CommonUtil;
 import mvp.dagger.yify.yify.views.SlidingTabLayout;
 
@@ -66,6 +71,12 @@ public class MainActivity extends BaseToolBarActivity {
         datas.add(new TabData("Action", ActionMovieListFragment.newInstance()));
         datas.add(new TabData("Adventure", AdventureMovieListFragment.newInstance()));
         datas.add(new TabData("Romance", RomanceMovielistFragment.newInstance()));
+        datas.add(new TabData("Animation", AnimationMovieListFragment.newInstance()));
+        datas.add(new TabData("Comedy", ComedyMovieListFragment.newInstance()));
+        datas.add(new TabData("Horror", HorrorMovieListFragment.newInstance()));
+        datas.add(new TabData("Sci-fi", SciFiMovieListFragment.newInstance()));
+        datas.add(new TabData("Thriller", ThrillerMovieListFragment.newInstance()));
+
         mViewpager.setOffscreenPageLimit(4);
         mViewpager.setAdapter(new CommonPagerAdapter(getSupportFragmentManager(), datas));
         mSlidingTabs.setDistributeEvenly(true);

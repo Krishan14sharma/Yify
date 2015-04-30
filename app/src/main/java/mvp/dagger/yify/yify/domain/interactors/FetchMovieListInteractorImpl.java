@@ -35,11 +35,24 @@ public class FetchMovieListInteractorImpl implements FetchMovieListInteractor {
             case ADVENTURE:
                 movieType = "Adventure";
                 break;
+            case ANIMATION:
+                movieType = "Animation";
+                break;
+            case COMEDY:
+                movieType = "Comedy";
+                break;
+            case HORROR:
+                movieType = "Horror";
+                break;
             case ROMANCE:
                 movieType = "Romance";
                 break;
-
-
+            case SCI_FI:
+                movieType = "Sci-fi";
+                break;
+            case THRILLER:
+                movieType = "Thriller";
+                break;
         }
         if (mMovieType != null)
             requestMap.put("genre", movieType);

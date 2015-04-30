@@ -40,8 +40,6 @@ import static mvp.dagger.yify.yify.util.CommonUtil.showToast;
  * A placeholder fragment containing a simple view.
  */
 public abstract class BaseMovieListFragment extends Fragment implements MainView, MainActivityAdapter.DataFetchEvent {
-    private static final String POSITION_KEY = "position";
-
     @InjectView(R.id.progressBar)
     ProgressBar progressBar;
 
@@ -57,6 +55,7 @@ public abstract class BaseMovieListFragment extends Fragment implements MainView
     MOVIE_TYPE type;
     float toolbarHeight;
     float toolbarContainerHeight;
+    private boolean isToolbarShown;
 
     public BaseMovieListFragment() {
 
@@ -72,8 +71,6 @@ public abstract class BaseMovieListFragment extends Fragment implements MainView
         mMovieAdapter = new MainActivityAdapter(this, new MovieListWrapper());
         mRecyclerView.setAdapter(mMovieAdapter);
         mRecyclerView.addItemDecoration(new SpacesItemDecoration(getResources().getDimensionPixelSize(R.dimen.item_spacing)));
-
-
         return rootView;
     }
 
@@ -112,6 +109,7 @@ public abstract class BaseMovieListFragment extends Fragment implements MainView
                 ((MainActivity) getActivity()).getToolbarContainer().animate()
                         .translationY(0)
                         .setInterpolator(new DecelerateInterpolator(2)).start();
+                isToolbarShown = true;
             }
 
             @Override
@@ -119,8 +117,21 @@ public abstract class BaseMovieListFragment extends Fragment implements MainView
                 ((MainActivity) getActivity()).getToolbarContainer().animate().
                         translationY(-toolbarHeight).
                         setInterpolator(new AccelerateInterpolator(2)).start();
+                isToolbarShown = false;
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // check if the toolbar is invisible if so then
+        Timber.d("mRecyclerView.getScrollY()   = " + mRecyclerView.getScrollY());
+        if (!isToolbarShown && mRecyclerView.getScaleY() == 0) {
+            mRecyclerView.scrollBy(0, -(int) toolbarHeight);
+            Timber.d(" condition met :)");
+
+        }
     }
 
     @Override
