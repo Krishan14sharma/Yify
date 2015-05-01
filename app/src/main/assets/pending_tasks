@@ -4,5 +4,10 @@
 
 ***Could use https://github.com/d-max/spots-dialog this dialog lib   or this one https://github.com/zzz40500/android-shapeLoadingView
 
-***IMplement the lazy loading inside the homescreen.
 
+***MAke your own generic parser for the api client.
+
+***Bug on homescreen where the white space is shown while swipe tabs when the toolbar is invisible.
+
+
+***Need to get the model for the profile update webservice i m not able to do so as of now.

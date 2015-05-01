@@ -17,9 +17,12 @@ import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.Headers;
+import retrofit.http.Multipart;
 import retrofit.http.POST;
+import retrofit.http.Part;
 import retrofit.http.Query;
 import retrofit.http.QueryMap;
+import retrofit.mime.TypedFile;
 
 /**
  * Created by vardan sharma  on 29-11-2014.
@@ -80,7 +83,7 @@ public class ApiClient {
 
 
         @GET("/list_movies.json")
-        @Headers("cache-control: public, max-age=60 *60,")
+        @Headers("Cache-Control: public, max-age=64000,max-stale=24000")
         void getMovieList(
                 @QueryMap Map<String, String> options,
                 Callback<MovieListWrapper> callback
@@ -100,7 +103,14 @@ public class ApiClient {
                 , @Field("application_key") String appKey, Callback<String> response);
 
         @GET("/user_profile.json")
+        @Headers("-Cache:uncached ")
         void getUserProfile(@Query("user_key") String userKey, Callback<String> userProfileWrapperCallback);
+
+        @Multipart
+        @POST("/user_edit_settings.json")
+        void editUserProfile(@Part("application_key") String appKey, @Part("user_key") String userKey,
+                             @Part("new_password") String newPassword, @Part("about_text") String abtMeTxt,
+                             @Part("avatar_image") TypedFile image, Callback<String> editProfileCallback);
 
 //        @GET("/movie.json")
 //        void getMovieDetail(@Query("id") String id, Callback<MovieDetail> response);

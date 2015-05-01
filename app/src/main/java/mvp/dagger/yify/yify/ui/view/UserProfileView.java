@@ -24,7 +24,11 @@ public interface UserProfileView extends BaseView {
 
     void showSaveBtn();
 
+    void toggleSaveOrEdit();
+
     void setFieldsNonEditable();
 
     void showErrorMsg(String msg);
+
+    void showImagePicker();
 }

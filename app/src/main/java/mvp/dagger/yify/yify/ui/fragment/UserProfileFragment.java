@@ -11,12 +11,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.squareup.otto.Subscribe;
 import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import mvp.dagger.yify.yify.R;
+import mvp.dagger.yify.yify.bus.BusProvider;
+import mvp.dagger.yify.yify.bus.ImageRecievedEvent;
+import mvp.dagger.yify.yify.bus.OpenImagePickerEvent;
 import mvp.dagger.yify.yify.domain.interactors.UserProfileInteractorImp;
 import mvp.dagger.yify.yify.domain.presenter.UserProfilePresenter;
 import mvp.dagger.yify.yify.domain.presenter.UserProfilePresenterImp;
@@ -45,6 +51,7 @@ public class UserProfileFragment extends BaseFragment implements UserProfileView
     Button mBtEdit;
     @InjectView(R.id.bt_save)
     Button mBtSave;
+    private File imageFile;
 
     public UserProfileFragment() {
     }
@@ -55,6 +62,7 @@ public class UserProfileFragment extends BaseFragment implements UserProfileView
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
         ButterKnife.inject(this, view);
         presenter = new UserProfilePresenterImp(new UserProfileInteractorImp(), this); // todo remove this with dagger
+        BusProvider.getInstance().register(this);
         return view;
     }
 
@@ -62,16 +70,13 @@ public class UserProfileFragment extends BaseFragment implements UserProfileView
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         presenter.getProfileData();
-
     }
 
     @OnClick(R.id.bt_save)
     public void onSaveBtnClicked() {
         presenter.onSaveEvent();
-        String email = mEdtUserEmail.getText().toString().trim();
-        String name = mEdtUserName.getText().toString().trim();
         String desc = mEdtUserDesc.getText().toString().trim();
-        presenter.updateProfileData(name, email, desc);
+        presenter.updateProfileData(desc, imageFile);
     }
 
 
@@ -80,12 +85,17 @@ public class UserProfileFragment extends BaseFragment implements UserProfileView
         presenter.onEditEvent();
     }
 
-    @Override
+    @OnClick(R.id.img_user_image_edit)
+    public void onUserImageClicked() {
+        presenter.onUserImageEvent();
+    }
 
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.reset(this);
         presenter.destroy();
+        BusProvider.getInstance().unregister(this);
     }
 
     @Override
@@ -100,10 +110,7 @@ public class UserProfileFragment extends BaseFragment implements UserProfileView
 
     @Override
     public void setUserProfile(String url) {
-        Picasso.with(getActivity())
-                .load(url)
-//                .transform(new CircleTransform()).
-                .into(mImvUserImage);
+        Picasso.with(getActivity()).load(url).into(mImvUserImage);
     }
 
     @Override
@@ -111,15 +118,12 @@ public class UserProfileFragment extends BaseFragment implements UserProfileView
         mEdtUserDesc.setText(desc);
     }
 
+
     @Override
     public void setFieldsEditable() {
-        mEdtUserEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
-        mEdtUserName.setInputType(InputType.TYPE_CLASS_TEXT);
-//        mEdtUserDesc.setInputType(InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE);
+        mEdtUserDesc.setInputType(InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE);
         mImgUserImageEdit.setVisibility(View.VISIBLE);
-//        mEdtUserEmail.setBackgroundResource(R.drawable.bg_edittext);
-//        mEdtUserName.setBackgroundResource(R.drawable.bg_edittext);
-//        mEdtUserDesc.setBackgroundResource(R.drawable.bg_edittext);
+        mEdtUserDesc.setBackgroundResource(R.drawable.bg_edittext);
 
     }
 
@@ -146,22 +150,39 @@ public class UserProfileFragment extends BaseFragment implements UserProfileView
 
     }
 
+    @Override
+    public void toggleSaveOrEdit() {
+        if (mBtEdit.getVisibility() == View.VISIBLE) {
+            mBtSave.setVisibility(View.VISIBLE);
+            mBtEdit.setVisibility(View.GONE);
+        } else {
+            mBtEdit.setVisibility(View.VISIBLE);
+            mBtSave.setVisibility(View.GONE);
+        }
+    }
+
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void setFieldsNonEditable() {
-//        mEdtUserEmail.setBackground(null);
-//        mEdtUserName.setBackground(null);
-//        mEdtUserDesc.setBackground(null);
-
-        mEdtUserEmail.setInputType(InputType.TYPE_NULL);
-        mEdtUserName.setInputType(InputType.TYPE_NULL);
+        mEdtUserDesc.setBackground(null);
         mEdtUserDesc.setInputType(InputType.TYPE_NULL);
         mImgUserImageEdit.setVisibility(View.GONE);
-
     }
 
     @Override
     public void showErrorMsg(String msg) {
         showToast(msg);
+    }
+
+    @Override
+    public void showImagePicker() {
+        BusProvider.getInstance().post(new OpenImagePickerEvent());
+    }
+
+    @Subscribe
+    public void onImageRecieved(ImageRecievedEvent event) {
+        mImvUserImage.setImageBitmap(event.getBitmap());
+        imageFile = event.getFile();
     }
 }

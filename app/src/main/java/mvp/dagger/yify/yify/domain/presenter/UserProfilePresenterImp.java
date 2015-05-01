@@ -1,5 +1,7 @@
 package mvp.dagger.yify.yify.domain.presenter;
 
+import java.io.File;
+
 import mvp.dagger.yify.yify.domain.interactors.UserProfileInterator;
 import mvp.dagger.yify.yify.model.user_profile.UserProfileWrapper;
 import mvp.dagger.yify.yify.ui.view.UserProfileView;
@@ -7,7 +9,7 @@ import mvp.dagger.yify.yify.ui.view.UserProfileView;
 /**
  * Created by vardaan sharma on 16/4/15.
  */
-public class UserProfilePresenterImp implements UserProfilePresenter, OnFetchProfileDataFinishListener {
+public class UserProfilePresenterImp implements UserProfilePresenter, OnFetchProfileDataFinishListener, OnUserProfileUpdateFinishListener {
     UserProfileInterator interator;
     UserProfileView view;
 
@@ -26,17 +28,24 @@ public class UserProfilePresenterImp implements UserProfilePresenter, OnFetchPro
     @Override
     public void onSaveEvent() {
         view.setFieldsNonEditable();
+        view.toggleSaveOrEdit();
     }
 
     @Override
-    public void updateProfileData(String name, String email, String discription) {
+    public void updateProfileData(String abtMeTxt, File userImageFile) {
         view.showLoading();
-        interator.updateUserProfileData(name, email, discription, this);
+        interator.updateUserProfileData(abtMeTxt, userImageFile, this);
     }
 
     @Override
     public void onEditEvent() {
         view.setFieldsEditable();
+        view.toggleSaveOrEdit();
+    }
+
+    @Override
+    public void onUserImageEvent() {
+        view.showImagePicker();
     }
 
     @Override
@@ -55,11 +64,22 @@ public class UserProfilePresenterImp implements UserProfilePresenter, OnFetchPro
         view.setUsername(name);
         view.setUserProfile(url);
         view.setProfileDesc(desc);
-        view.setFieldsEditable();
+        view.setFieldsNonEditable();
     }
 
     @Override
     public void onFailure(String error) {
+        view.hideLoading();
+        view.showErrorMsg(error);
+    }
+
+    @Override
+    public void onUpdateSuccess() {
+        view.hideLoading();
+    }
+
+    @Override
+    public void onUpdateFailure(String error) {
         view.hideLoading();
         view.showErrorMsg(error);
     }
