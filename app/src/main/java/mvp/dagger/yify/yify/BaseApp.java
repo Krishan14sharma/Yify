@@ -50,9 +50,7 @@ public class BaseApp extends Application {
     private static class CrashReportingTree extends Timber.HollowTree {
 
         @Override
-        public void i(String message, Object... args) {
-            // TODO e.g., Crashlytics.log(String.format(message, args));
-        }
+        public void i(String message, Object... args) { /* TODO e.g., Crashlytics.log(String.format(message, args)); */ }
 
         @Override
         public void i(Throwable t, String message, Object... args) {
@@ -60,15 +58,12 @@ public class BaseApp extends Application {
         }
 
         @Override
-        public void e(String message, Object... args) {
-//            Crashlytics.log(message);
+        public void e(String message, Object... args) { /*Crashlytics.log(message);*/
             i("ERROR: " + message, args);
         }
 
         @Override
-        public void e(Throwable t, String message, Object... args) {
-//            Crashlytics.logException(t);
-        }
+        public void e(Throwable t, String message, Object... args) { /*Crashlytics.logException(t);*/ }
 
         @Override
         public void d(String message, Object... args) {

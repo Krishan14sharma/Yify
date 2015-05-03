@@ -35,5 +35,4 @@ public class ImageRecievedEvent {
     public Bitmap onImageRecieved() {
         return bitmap;
     }
-
 }

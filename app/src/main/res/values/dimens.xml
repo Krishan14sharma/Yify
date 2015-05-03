@@ -18,4 +18,10 @@
     <dimen name="grid2_image_height">90dp</dimen>
     <dimen name="grid2_height_minus_card_corner">82dp</dimen>
     <dimen name="item_spacing">8dp</dimen>
+
+
+    <!-- Dimensions related to fab button-->
+    <dimen name="btn_fab_size">56dp</dimen>
+    <dimen name="btn_fab_margins">16dp</dimen>
+    <dimen name="default_elevation">8dp</dimen>
 </resources>

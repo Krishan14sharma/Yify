@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
@@ -17,14 +18,17 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import mvp.dagger.yify.yify.BaseApp;
 import mvp.dagger.yify.yify.BaseAppComponent;
 import mvp.dagger.yify.yify.R;
+import mvp.dagger.yify.yify.bus.BusProvider;
+import mvp.dagger.yify.yify.bus.ShowMovieListDialog;
 import mvp.dagger.yify.yify.di.component.DaggerMainComponent;
 import mvp.dagger.yify.yify.di.component.MainComponent;
 import mvp.dagger.yify.yify.di.module.MainModule;
 import mvp.dagger.yify.yify.domain.presenter.MainPresenter;
-import mvp.dagger.yify.yify.model.MOVIE_TYPE;
+import mvp.dagger.yify.yify.constants.MOVIE_TYPE;
 import mvp.dagger.yify.yify.model.movie_list.MovieListWrapper;
 import mvp.dagger.yify.yify.ui.activity.MainActivity;
 import mvp.dagger.yify.yify.ui.adapter.MainActivityAdapter;
@@ -42,7 +46,6 @@ import static mvp.dagger.yify.yify.util.CommonUtil.showToast;
 public abstract class BaseMovieListFragment extends Fragment implements MainView, MainActivityAdapter.DataFetchEvent {
     @InjectView(R.id.progressBar)
     ProgressBar progressBar;
-
     @Inject
     MainPresenter presenter; // should not be private for dagger magic
     @InjectView(R.id.recycler_view)
@@ -51,6 +54,8 @@ public abstract class BaseMovieListFragment extends Fragment implements MainView
     ProgressBar mHorizontalBar;
     @InjectView(R.id.container)
     RelativeLayout mContainer;
+    @InjectView(R.id.btn_filter)
+    ImageButton mFilterBtn;
     private MainActivityAdapter mMovieAdapter;
     MOVIE_TYPE type;
     float toolbarHeight;
@@ -67,11 +72,20 @@ public abstract class BaseMovieListFragment extends Fragment implements MainView
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.inject(this, rootView);
         setUpDagger();
+        setUpRecyclerView();
+        return rootView;
+    }
+
+    private void setUpRecyclerView() {
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         mMovieAdapter = new MainActivityAdapter(this, new MovieListWrapper());
         mRecyclerView.setAdapter(mMovieAdapter);
         mRecyclerView.addItemDecoration(new SpacesItemDecoration(getResources().getDimensionPixelSize(R.dimen.item_spacing)));
-        return rootView;
+    }
+
+    @OnClick(R.id.btn_filter)
+    public void filterBtnClicked() {
+        BusProvider.getInstance().post(new ShowMovieListDialog());
     }
 
     public MOVIE_TYPE getType() {
@@ -180,6 +194,7 @@ public abstract class BaseMovieListFragment extends Fragment implements MainView
         super.onDestroyView();
         ButterKnife.reset(this);
         presenter.destroy();
+
     }
 
     @Override

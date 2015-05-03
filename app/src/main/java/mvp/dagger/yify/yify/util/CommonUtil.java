@@ -9,6 +9,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.location.LocationManager;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.widget.Toast;
@@ -144,15 +145,18 @@ public class CommonUtil {
      * This method converts dp unit to equivalent pixels, depending on device density.
      *
      * @param dp A value in dp (density independent pixels) unit. Which we need to convert into pixels
-     * @param context Context to get resources and device specific display metrics
      * @return A float value to represent px equivalent to dp depending on device density
      */
-    public static float convertDpToPixel(float dp){
+    public static float convertDpToPixel(float dp) {
         Resources resources = BaseApp.getContext().getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
         float px = dp * (metrics.densityDpi / 160f);
         return px;
     }
 
+    public static boolean isGreaterThanOrEqualToLolipop() {
+        return Build.VERSION.SDK_INT >= 21;
+
+    }
 }
 

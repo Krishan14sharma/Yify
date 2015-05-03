@@ -5,7 +5,7 @@ import java.util.HashMap;
 import mvp.dagger.yify.yify.api.ApiClient;
 import mvp.dagger.yify.yify.api.util.CancelableCallback;
 import mvp.dagger.yify.yify.domain.presenter.FinishListner;
-import mvp.dagger.yify.yify.model.MOVIE_TYPE;
+import mvp.dagger.yify.yify.constants.MOVIE_TYPE;
 import mvp.dagger.yify.yify.model.movie_list.MovieListWrapper;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -25,6 +25,23 @@ public class FetchMovieListInteractorImpl implements FetchMovieListInteractor {
         HashMap<String, String> requestMap = new HashMap<>();
         requestMap.put("page", String.valueOf(pageNum));
         String movieType = null;
+        movieType = getMovieTypeStringVal(mMovieType, movieType);
+        if (mMovieType != null)
+            requestMap.put("genre", movieType);
+        ApiClient.getApiClient().getMovieList(requestMap, callback = new CancelableCallback<>(new Callback<MovieListWrapper>() {
+            @Override
+            public void success(MovieListWrapper movieListWrapper, Response response) {
+                listner.onSuccess(movieListWrapper);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                listner.onFailure(error);
+            }
+        }));
+    }
+
+    private String getMovieTypeStringVal(MOVIE_TYPE mMovieType, String movieType) {
         switch (mMovieType) {
             case ALL:
                 movieType = null;
@@ -54,19 +71,7 @@ public class FetchMovieListInteractorImpl implements FetchMovieListInteractor {
                 movieType = "Thriller";
                 break;
         }
-        if (mMovieType != null)
-            requestMap.put("genre", movieType);
-        ApiClient.getApiClient().getMovieList(requestMap, callback = new CancelableCallback<>(new Callback<MovieListWrapper>() {
-            @Override
-            public void success(MovieListWrapper movieListWrapper, Response response) {
-                listner.onSuccess(movieListWrapper);
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                listner.onFailure(error);
-            }
-        }));
+        return movieType;
     }
 
     @Override

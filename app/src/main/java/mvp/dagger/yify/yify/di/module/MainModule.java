@@ -6,7 +6,7 @@ import mvp.dagger.yify.yify.domain.interactors.FetchMovieListInteractor;
 import mvp.dagger.yify.yify.domain.interactors.FetchMovieListInteractorImpl;
 import mvp.dagger.yify.yify.domain.presenter.MainPresenter;
 import mvp.dagger.yify.yify.domain.presenter.MainPresenterImpl;
-import mvp.dagger.yify.yify.model.MOVIE_TYPE;
+import mvp.dagger.yify.yify.constants.MOVIE_TYPE;
 import mvp.dagger.yify.yify.ui.view.MainView;
 
 /**

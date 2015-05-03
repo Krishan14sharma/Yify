@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@color/style_color_accent"
+        android:gravity="center"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sort_by_string"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.TextView.SpinnerItem"
+                android:textColor="#fff" />
+
+            <Spinner
+                android:id="@+id/spinner_sort_by"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/txt_quality_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/select_quality_label"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.TextView.SpinnerItem"
+        android:textColor="#fff" />
+
+    <RadioGroup
+        android:id="@+id/rbg_quality"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_quality_label"
+        android:layout_margin="16dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="4dp"
+            android:text="@string/movie_quality_option_all" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="4dp"
+            android:text="@string/movie_quality_option_720p" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="4dp"
+
+            android:text="@string/movie_quality_option_1080p" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="4dp"
+            android:text="@string/movie_quality_option_3D" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/container_rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rbg_quality"
+        android:layout_margin="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Minimum rating"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.TextView.SpinnerItem"
+            android:textColor="#fff" />
+
+        <Spinner
+            android:id="@+id/spinner_min_ratings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line_seperator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/container_rating"
+        android:background="#cccccc" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line_seperator"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <Button
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:padding="12dp"
+            android:text="CANCEL" />
+
+        <Button
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:padding="12dp"
+            android:text="APPLY" />
+
+
+    </LinearLayout>
+</RelativeLayout>

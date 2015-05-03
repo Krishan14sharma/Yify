@@ -3,31 +3,46 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity$PlaceholderFragment"
-    android:background="@color/bg_color">
+    android:background="@color/bg_color"
+    tools:context=".MainActivity$PlaceholderFragment">
 
     <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:visibility="gone" />
 
     <view
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:id="@+id/recycler_view"
         class="android.support.v7.widget.RecyclerView"
-        android:id="@+id/recycler_view" />
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+    <ImageButton
+        android:id="@+id/btn_filter"
+        android:layout_width="@dimen/btn_fab_size"
+        android:layout_height="@dimen/btn_fab_size"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/btn_fab_margins"
+        android:layout_marginRight="@dimen/btn_fab_margins"
+        android:background="@drawable/fab_btn_bg"
+        android:elevation="@dimen/default_elevation"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_filter_variant_black_24dp"
+        android:textSize="28sp" />
 
     <ProgressBar
-        android:layout_width="fill_parent"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_height="wrap_content"
         android:id="@+id/horizontal_bar"
-        android:indeterminate="true"
-        android:visibility="gone"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentTop="false"
-        android:layout_alignParentBottom="true" />
+        android:indeterminate="true"
+        android:visibility="gone" />
 
 </RelativeLayout>

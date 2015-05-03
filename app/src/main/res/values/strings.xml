@@ -21,4 +21,11 @@
     <string name="long_text">this is a  very long text so please stop reading this.If you are reading this then you are probably very smart.You will find the treasure on these cordinates 21* 34\' 54\'\' ,29*39\'56\'\'</string>
     <string name="upcomingmov">Upcoming Movies</string>
     <string name="movies">Movies</string>
+    <string name="sort_by_string">Sort By</string>
+    <string name="select_quality_label">Select Quality</string>
+    <string name="movie_quality_option_all">All</string>
+    <string name="movie_quality_option_720p">720p</string>
+    <string name="movie_quality_option_1080p">1080p</string>
+    <string name="movie_quality_option_3D">3D</string>
+    <string name="min_rating_spinner_label">Minimum rating</string>
 </resources>

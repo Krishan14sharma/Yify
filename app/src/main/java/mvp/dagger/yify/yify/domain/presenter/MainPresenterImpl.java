@@ -3,7 +3,7 @@ package mvp.dagger.yify.yify.domain.presenter;
 import android.support.annotation.Nullable;
 
 import mvp.dagger.yify.yify.domain.interactors.FetchMovieListInteractor;
-import mvp.dagger.yify.yify.model.MOVIE_TYPE;
+import mvp.dagger.yify.yify.constants.MOVIE_TYPE;
 import mvp.dagger.yify.yify.model.movie_list.MovieListWrapper;
 import mvp.dagger.yify.yify.ui.view.MainView;
 import retrofit.RetrofitError;

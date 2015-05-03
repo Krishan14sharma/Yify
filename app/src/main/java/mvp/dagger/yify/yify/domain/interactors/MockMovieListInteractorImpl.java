@@ -3,7 +3,7 @@ package mvp.dagger.yify.yify.domain.interactors;
 import com.google.gson.Gson;
 
 import mvp.dagger.yify.yify.domain.presenter.FinishListner;
-import mvp.dagger.yify.yify.model.MOVIE_TYPE;
+import mvp.dagger.yify.yify.constants.MOVIE_TYPE;
 import mvp.dagger.yify.yify.model.movie_list.MovieListWrapper;
 
 import static mvp.dagger.yify.yify.util.CommonUtil.loadJSONFromAsset;

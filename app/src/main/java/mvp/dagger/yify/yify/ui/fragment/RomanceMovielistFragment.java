@@ -2,7 +2,7 @@ package mvp.dagger.yify.yify.ui.fragment;
 
 import android.app.Fragment;
 
-import mvp.dagger.yify.yify.model.MOVIE_TYPE;
+import mvp.dagger.yify.yify.constants.MOVIE_TYPE;
 import mvp.dagger.yify.yify.ui.common.BaseMovieListFragment;
 
 /**

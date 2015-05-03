@@ -20,12 +20,9 @@ import mvp.dagger.yify.yify.util.CommonUtil;
  * Contains the logic for Toolbar.In order to use the Toolbar you need to remove the Action Bar using styles and include include_toolbar layout in your main xml.
  */
 public class BaseToolBarActivity extends ActionBarActivity {
-
-
     @Optional
     @InjectView(R.id.toolbar)
     public Toolbar mToolbar;
-
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
